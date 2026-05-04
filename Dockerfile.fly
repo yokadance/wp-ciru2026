@@ -1,0 +1,13 @@
+FROM wordpress:latest
+
+# ── Temas bakeados en la imagen ──────────────────────────────────────
+COPY astra            /var/www/html/wp-content/themes/astra
+COPY astra-ciru-child /var/www/html/wp-content/themes/astra-ciru-child
+
+# Permisos correctos para www-data
+RUN chown -R www-data:www-data /var/www/html/wp-content/themes/
+
+# ── URL dinámica via WORDPRESS_CONFIG_EXTRA ──────────────────────────
+# En Dockerfile los $ NO se sustituyen (a diferencia de docker-compose).
+# El entrypoint de WordPress aplica este bloque a wp-config.php en cada arranque.
+ENV WORDPRESS_CONFIG_EXTRA='define("WP_DEBUG_LOG", false); define("WP_DEBUG_DISPLAY", false); define("SCRIPT_DEBUG", false); $_p = (!empty($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] !== "off") ? "https" : "http"; define("WP_HOME", $_p . "://" . $_SERVER["HTTP_HOST"]); define("WP_SITEURL", $_p . "://" . $_SERVER["HTTP_HOST"]);'

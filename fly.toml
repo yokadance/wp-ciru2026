@@ -1,0 +1,46 @@
+# fly.toml — App WordPress
+# Región: Buenos Aires (eze) — más cercana a Uruguay en Fly.io
+# Deploy: fly deploy --config fly.toml
+
+app            = "congreso-ciru"
+primary_region = "eze"
+
+[build]
+  dockerfile = "Dockerfile.fly"
+
+# ── Variables de entorno (no sensibles) ─────────────────────────────
+# Secrets (DB_PASSWORD, etc.) se cargan con:
+#   fly secrets set WORDPRESS_DB_PASSWORD=xxx --app congreso-ciru
+[env]
+  WORDPRESS_DB_HOST = "congreso-ciru-db.internal:3306"
+  WORDPRESS_DB_NAME = "congreso_ciru"
+  WORDPRESS_DB_USER = "wp_user"
+  WORDPRESS_DEBUG   = "0"
+
+# ── Volumen persistente para wp-content ─────────────────────────────
+# Al montar un volumen vacío sobre /wp-content, Docker copia los archivos
+# de la imagen (temas bakeados) al volumen en el primer arranque.
+# Uploads, plugins instalados luego, etc. quedan persistidos.
+# Crear con: fly volumes create wp_content --app congreso-ciru --size 5 --region eze
+[[mounts]]
+  source      = "wp_content"
+  destination = "/var/www/html/wp-content"
+
+# ── HTTP service ─────────────────────────────────────────────────────
+[http_service]
+  internal_port        = 80
+  force_https          = true
+  auto_stop_machines   = "stop"    # La máquina se detiene sin tráfico
+  auto_start_machines  = true      # Se inicia sola al primer request
+  min_machines_running = 1         # Siempre al menos 1 activa (no cold start)
+
+  [http_service.concurrency]
+    type       = "requests"
+    hard_limit = 100
+    soft_limit = 80
+
+# ── Máquina virtual ──────────────────────────────────────────────────
+[[vm]]
+  memory   = "512mb"
+  cpu_kind = "shared"
+  cpus     = 1

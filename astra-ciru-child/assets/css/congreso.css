@@ -1,0 +1,904 @@
+/* =====================================================
+   76° Congreso Uruguayo de Cirugía 2026 — v3
+   Design system: Manrope + Inter · Material Design 3
+   ===================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@600;700;800&display=swap');
+
+/* =====================================================
+   1. DESIGN TOKENS
+   ===================================================== */
+:root {
+  /* Paleta */
+  --primary:                #00353a;
+  --on-primary:             #ffffff;
+  --primary-container:      #004d54;
+  --on-primary-container:   #81bdc4;
+  --secondary:              #055db6;
+  --on-secondary:           #ffffff;
+  --tertiary-fixed:         #98f0ff;
+  --tertiary-fixed-dim:     #45d8ed;
+  --on-tertiary-fixed:      #001f24;
+  --background:             #f6fafa;
+  --surface:                #f6fafa;
+  --surface-container-low:  #f0f4f4;
+  --surface-container:      #ebefef;
+  --surface-container-high: #e5e9e9;
+  --surface-container-lowest: #ffffff;
+  --on-surface:             #181c1d;
+  --on-surface-variant:     #40484a;
+  --outline:                #70797a;
+  --outline-variant:        #bfc8c9;
+  --error:                  #ba1a1a;
+
+  /* Tipografía */
+  --f-headline: 'Manrope', system-ui, sans-serif;
+  --f-body:     'Inter', system-ui, sans-serif;
+
+  /* Layout */
+  --max-w: 1280px;
+  --px:    2rem;
+  --sec-py: 6rem;
+
+  /* Radios */
+  --r:    .25rem;
+  --r-lg: .5rem;
+  --r-xl: .75rem;
+  --r-2xl: 1rem;
+  --r-3xl: 1.5rem;
+  --r-full: 9999px;
+
+  /* Sombras */
+  --floating:   0 20px 40px rgba(0,53,58,.06);
+  --shadow-xl:  0 25px 50px -12px rgba(0,0,0,.18);
+
+  /* Transiciones */
+  --tr:    all .2s ease;
+  --tr-md: all .3s ease;
+}
+
+/* =====================================================
+   2. RESET
+   ===================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+html  { scroll-behavior: smooth; }
+body  { background: var(--background); color: var(--on-surface); font-family: var(--f-body); }
+img   { max-width: 100%; display: block; }
+
+/* Full-width: el main está fuera del ast-container (ver front-page.php) */
+body.congreso-front-page #congreso-main {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  float: none !important;
+}
+body.congreso-front-page #congreso-main > section,
+body.congreso-front-page #congreso-main > .ciru-hero {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  float: none !important;
+  box-sizing: border-box;
+}
+/* Asegurarse que Astra no restrinja el layout de la página */
+body.congreso-front-page #content,
+body.congreso-front-page .ast-container {
+  max-width: 100% !important;
+}
+body.congreso-front-page .site-content {
+  padding: 0 !important;
+}
+
+/* =====================================================
+   3. UTILIDADES
+   ===================================================== */
+.ciru-container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--px);
+}
+.ciru-section   { padding: var(--sec-py) 0; }
+.ciru-floating  { box-shadow: var(--floating); }
+
+.ciru-eyebrow {
+  font: 700 .72rem/1 var(--f-body);
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--secondary);
+  display: block;
+  margin-bottom: .75rem;
+}
+.ciru-section-title {
+  font: 700 clamp(1.75rem,3vw,2.5rem)/1.2 var(--f-headline);
+  color: var(--primary);
+  margin: 0 0 .75rem;
+}
+
+/* =====================================================
+   4. HEADER — GLASS NAV (override Astra)
+   ===================================================== */
+.site-header,
+#ast-fixed-header,
+.ast-hf-header-wrap {
+  background: rgba(255,255,255,.75) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  box-shadow: 0 1px 16px rgba(0,53,58,.08) !important;
+}
+.ast-site-identity .site-title a,
+.ast-site-identity .site-title {
+  font: 800 1.1rem/1 var(--f-headline) !important;
+  color: var(--primary) !important;
+  letter-spacing: -.02em !important;
+  text-decoration: none !important;
+}
+.main-navigation .menu-item > a,
+.ast-nav-menu > li > a {
+  font: 500 .88rem/1 var(--f-body) !important;
+  color: rgba(0,53,58,.6) !important;
+  transition: color .2s !important;
+}
+.main-navigation .menu-item > a:hover,
+.ast-nav-menu > li > a:hover {
+  color: var(--primary) !important;
+}
+
+/* =====================================================
+   5. BOTONES
+   ===================================================== */
+.ciru-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font: 700 .9rem/1 var(--f-body);
+  text-decoration: none;
+  padding: 1rem 2rem;
+  border-radius: var(--r-lg);
+  border: none;
+  cursor: pointer;
+  transition: var(--tr-md);
+  white-space: nowrap;
+}
+.ciru-btn .material-symbols-outlined { font-size: 1.1rem; }
+
+.ciru-btn--primary { background: var(--primary); color: var(--on-primary); }
+.ciru-btn--primary:hover { background: var(--secondary); color: var(--on-primary); transform: translateY(-1px); }
+
+.ciru-btn--accent  { background: var(--tertiary-fixed-dim); color: var(--on-tertiary-fixed); }
+.ciru-btn--accent:hover { transform: scale(1.04); color: var(--on-tertiary-fixed); }
+
+.ciru-btn--outline { background: transparent; color: var(--on-primary); border: 1px solid var(--outline-variant); }
+.ciru-btn--outline:hover { background: rgba(255,255,255,.1); color: var(--on-primary); }
+
+.ciru-btn--ghost { background: transparent; color: var(--primary); border: 1px solid var(--primary); }
+.ciru-btn--ghost:hover { background: var(--primary); color: var(--on-primary); }
+
+/* =====================================================
+   6. HERO — 2 columnas, slide completo
+   ===================================================== */
+.ciru-hero {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background: var(--primary);
+}
+
+.ciru-hero__slides { position: absolute; inset: 0; }
+
+.ciru-hero__slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transition: opacity .85s ease;
+  pointer-events: none;
+}
+.ciru-hero__slide.is-active { opacity: 1; pointer-events: auto; }
+
+.ciru-hero__slide-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--slide-gradient);
+}
+
+/* Foto de fondo — ocupa todo el slide */
+.ciru-hero__slide-bg-photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Contenido: columna única centrada */
+.ciru-hero__content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+}
+.ciru-hero__content-inner {
+  max-width: 54rem;
+  margin: 0 auto;
+  padding: 10rem var(--px) 8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.ciru-hero__badge {
+  display: inline-flex;
+  background: var(--tertiary-fixed-dim);
+  color: var(--on-tertiary-fixed);
+  font: 700 .68rem/1 var(--f-body);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: .35rem .9rem;
+  border-radius: var(--r-full);
+  width: fit-content;
+}
+
+.ciru-hero__title {
+  font: 800 clamp(2.4rem,5.5vw,4.5rem)/1.05 var(--f-headline);
+  color: var(--on-primary);
+  margin: 0;
+}
+.ciru-hero__title .accent { color: var(--tertiary-fixed-dim); }
+
+.ciru-hero__subtitle {
+  font: 300 1.1rem/1.7 var(--f-body);
+  color: var(--on-primary-container);
+  margin: 0;
+  max-width: 480px;
+}
+
+.ciru-hero__meta {
+  display: flex;
+  gap: 1.75rem;
+  flex-wrap: wrap;
+}
+.ciru-hero__meta-item {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  font: 400 .9rem/1 var(--f-body);
+  color: var(--on-primary-container);
+}
+.ciru-hero__meta-item .material-symbols-outlined { font-size: 1rem; }
+
+.ciru-hero__actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+/* Columna derecha: imagen rotada (no usada en layout actual) */
+.ciru-hero__right {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ciru-hero__right::before {
+  content: '';
+  position: absolute;
+  top: -48px; left: -48px;
+  width: 256px; height: 256px;
+  background: rgba(101,161,254,.2);
+  border-radius: 50%;
+  filter: blur(48px);
+  pointer-events: none;
+}
+.ciru-hero__img-wrap {
+  position: relative;
+  border-radius: var(--r-2xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+  transform: rotate(2deg);
+  width: 100%;
+  max-width: 440px;
+  aspect-ratio: 4/5;
+}
+.ciru-hero__img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+.ciru-hero__img-placeholder {
+  width: 100%; height: 100%;
+  background: rgba(255,255,255,.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: rgba(255,255,255,.3);
+}
+.ciru-hero__img-placeholder .material-symbols-outlined { font-size: 5rem; }
+.ciru-hero__img-placeholder span:last-child {
+  font: 600 .8rem/1 var(--f-body);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+/* Dots verticales derecha */
+.ciru-hero__dots {
+  position: absolute;
+  right: 28px; top: 50%;
+  transform: translateY(-50%);
+  z-index: 12;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+.ciru-hero__dot {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,.35);
+  background: transparent;
+  cursor: pointer;
+  transition: var(--tr);
+  padding: 0; display: block;
+}
+.ciru-hero__dot.is-active {
+  background: var(--tertiary-fixed-dim);
+  border-color: var(--tertiary-fixed-dim);
+  transform: scale(1.4);
+}
+.ciru-hero__dot:hover:not(.is-active) { border-color: rgba(255,255,255,.7); }
+
+/* Tabs inferiores */
+.ciru-hero__event-bar {
+  position: absolute;
+  bottom: 0; right: 60px;
+  z-index: 12;
+  display: flex;
+}
+.ciru-hero__event-tab {
+  padding: 12px 24px;
+  background: rgba(0,0,0,.4);
+  color: rgba(255,255,255,.5);
+  font: 600 .73rem/1 var(--f-body);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  border-top: 3px solid transparent;
+  transition: var(--tr);
+  backdrop-filter: blur(10px);
+}
+.ciru-hero__event-tab.is-active,
+.ciru-hero__event-tab:hover {
+  background: rgba(0,0,0,.65);
+  color: var(--on-primary);
+  border-top-color: var(--tab-color, var(--tertiary-fixed-dim));
+}
+
+/* Progress */
+.ciru-hero__progress {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px; background: rgba(255,255,255,.08); z-index: 13;
+}
+.ciru-hero__progress-bar { height: 100%; background: var(--tertiary-fixed-dim); width: 0; }
+
+/* =====================================================
+   7. COUNTDOWN — 4 tarjetas blancas
+   ===================================================== */
+.ciru-countdown {
+  background: var(--surface-container-low);
+  padding: 3rem 0;
+}
+.ciru-countdown__grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 1rem;
+  max-width: 56rem;
+  margin: 0 auto;
+}
+.ciru-countdown__card {
+  background: var(--surface-container-lowest);
+  padding: 1.75rem 1rem;
+  border-radius: var(--r-xl);
+  text-align: center;
+  box-shadow: var(--floating);
+}
+.ciru-countdown__number {
+  font: 800 clamp(2.2rem,4vw,3rem)/1 var(--f-headline);
+  color: var(--primary);
+  display: block;
+  min-width: 2ch;
+}
+.ciru-countdown__text {
+  font: 700 .62rem/1 var(--f-body);
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--outline);
+  display: block;
+  margin-top: .625rem;
+}
+
+/* =====================================================
+   8. BIENVENIDA — foto grande + overlay quote
+   ===================================================== */
+.ciru-bienvenida { background: var(--surface); }
+.ciru-bienvenida__grid {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.ciru-bienvenida__photo-col { position: relative; }
+.ciru-bienvenida__photo-wrap {
+  border-radius: var(--r-2xl);
+  overflow: hidden;
+  aspect-ratio: 4/5;
+  background: var(--surface-container-high);
+}
+.ciru-bienvenida__photo-wrap img { width: 100%; height: 100%; object-fit: cover; }
+.ciru-bienvenida__photo-placeholder {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--surface-container-high);
+}
+.ciru-bienvenida__photo-placeholder .material-symbols-outlined {
+  font-size: 6rem; color: var(--outline-variant);
+}
+
+.ciru-bienvenida__quote {
+  position: absolute;
+  bottom: -2rem; right: -2rem;
+  background: var(--primary);
+  color: var(--on-primary);
+  padding: 1.75rem;
+  border-radius: var(--r-xl);
+  max-width: 18rem;
+  box-shadow: 0 20px 40px rgba(0,53,58,.2);
+}
+.ciru-bienvenida__quote p {
+  font: 600 .92rem/1.65 var(--f-headline);
+  font-style: italic;
+  margin: 0;
+}
+
+.ciru-bienvenida__text { padding-top: .5rem; }
+.ciru-bienvenida__text p {
+  font: 400 1.05rem/1.82 var(--f-body);
+  color: var(--on-surface-variant);
+  margin: 0 0 1.25rem;
+}
+.ciru-bienvenida__firma {
+  font: 700 .95rem/1.5 var(--f-body);
+  color: var(--primary);
+  margin-top: 1rem;
+}
+.ciru-bienvenida__firma span {
+  font-weight: 400;
+  color: var(--outline);
+  display: block;
+}
+
+/* =====================================================
+   9. AUTORIDADES — cards con icono + borde inferior
+   ===================================================== */
+.ciru-autoridades { background: var(--surface-container-low); }
+.ciru-autoridades__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 4rem;
+  gap: 2rem;
+}
+.ciru-autoridades__header-right {
+  max-width: 28rem;
+  text-align: right;
+  color: var(--outline);
+  font: 400 .9rem/1.6 var(--f-body);
+}
+.ciru-autoridades__grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 2rem;
+}
+.ciru-autoridad-card {
+  background: var(--surface-container-lowest);
+  padding: 2rem;
+  border-radius: var(--r-2xl);
+  box-shadow: var(--floating);
+  border-bottom: 4px solid var(--card-color, var(--secondary));
+  transition: var(--tr-md);
+}
+.ciru-autoridad-card:hover { transform: translateY(-4px); box-shadow: 0 30px 60px rgba(0,53,58,.1); }
+
+.ciru-autoridad-card__icon {
+  width: 5rem; height: 5rem;
+  border-radius: 50%;
+  background: var(--tertiary-fixed);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.5rem;
+}
+.ciru-autoridad-card__icon .material-symbols-outlined { font-size: 2.25rem; color: var(--primary); }
+
+.ciru-autoridad-card__name {
+  font: 700 1.15rem/1.25 var(--f-headline);
+  color: var(--primary);
+  margin: 0 0 .25rem;
+}
+.ciru-autoridad-card__cargo {
+  font: 500 .88rem/1 var(--f-body);
+  color: var(--secondary);
+  margin: 0 0 1rem;
+}
+.ciru-autoridad-card__org {
+  font: 400 .82rem/1 var(--f-body);
+  color: var(--on-surface-variant);
+  margin: 0;
+}
+
+/* =====================================================
+   10. PRECIOS — pill tabs + 3 cards
+   ===================================================== */
+.ciru-precios { background: var(--surface); }
+.ciru-precios__header { text-align: center; margin-bottom: 4rem; }
+
+.ciru-precios__tabs {
+  display: inline-flex;
+  padding: .25rem;
+  background: var(--surface-container-high);
+  border-radius: var(--r-full);
+  margin: 1.5rem auto 0;
+}
+.ciru-precios__tab {
+  padding: .55rem 1.5rem;
+  border-radius: var(--r-full);
+  border: none;
+  background: transparent;
+  font: 500 .85rem/1 var(--f-body);
+  color: var(--outline);
+  cursor: pointer;
+  transition: var(--tr);
+}
+.ciru-precios__tab.is-active {
+  background: var(--surface-container-lowest);
+  color: var(--primary);
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+.ciru-precios__tab:hover:not(.is-active) { color: var(--primary); }
+
+.ciru-precios__panel { display: none; }
+.ciru-precios__panel.is-active { display: block; animation: ciruFadeUp .32s ease; }
+
+@keyframes ciruFadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.ciru-precios__grid { display: grid; gap: 2rem; align-items: start; }
+.ciru-precios__grid--3 { grid-template-columns: repeat(3,1fr); }
+.ciru-precios__grid--2 {
+  grid-template-columns: repeat(2,1fr);
+  max-width: 44rem; margin: 0 auto;
+}
+
+/* Price card */
+.ciru-price-card {
+  background: var(--surface-container-low);
+  padding: 2.5rem;
+  border-radius: var(--r-2xl);
+  display: flex; flex-direction: column;
+  transition: var(--tr-md);
+  position: relative;
+  overflow: hidden;
+}
+.ciru-price-card:hover {
+  background: var(--surface-container-lowest);
+  box-shadow: 0 25px 50px rgba(0,0,0,.1);
+}
+.ciru-price-card.is-featured {
+  background: var(--primary);
+  box-shadow: var(--shadow-xl);
+}
+
+.ciru-price-card__badge {
+  position: absolute;
+  top: 0; right: 0;
+  background: var(--tertiary-fixed-dim);
+  color: var(--on-tertiary-fixed);
+  font: 700 .6rem/1 var(--f-body);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: .3rem .875rem;
+  border-radius: 0 var(--r-2xl) 0 var(--r-lg);
+}
+
+.ciru-price-card__title {
+  font: 700 1rem/1 var(--f-body);
+  color: var(--outline);
+  margin: 0 0 1rem;
+}
+.ciru-price-card.is-featured .ciru-price-card__title { color: var(--on-primary-container); }
+
+.ciru-price-card__amount { display: flex; align-items: baseline; gap: .3rem; margin-bottom: 2rem; }
+.ciru-price-card__number {
+  font: 800 clamp(2.5rem,4vw,3.5rem)/1 var(--f-headline);
+  color: var(--primary);
+}
+.ciru-price-card.is-featured .ciru-price-card__number { color: var(--on-primary); }
+.ciru-price-card__currency { font: 400 .82rem/1 var(--f-body); color: var(--outline); }
+.ciru-price-card.is-featured .ciru-price-card__currency { color: var(--on-primary-container); }
+
+.ciru-price-card__features {
+  list-style: none; padding: 0;
+  margin: 0 0 3rem; flex: 1;
+  display: flex; flex-direction: column; gap: 1rem;
+}
+.ciru-price-card__features li {
+  display: flex; align-items: center; gap: .75rem;
+  font: 400 .9rem/1 var(--f-body);
+  color: var(--on-surface-variant);
+}
+.ciru-price-card.is-featured .ciru-price-card__features li { color: var(--on-primary); }
+.ciru-price-card__features li .material-symbols-outlined {
+  font-size: 1.1rem;
+  color: var(--secondary);
+  font-variation-settings: 'FILL' 1;
+  flex-shrink: 0;
+}
+.ciru-price-card.is-featured .ciru-price-card__features li .material-symbols-outlined {
+  color: var(--tertiary-fixed-dim);
+}
+
+/* =====================================================
+   11. POSTULACIONES — bento grid
+   ===================================================== */
+.ciru-postulaciones { background: var(--surface-container-low); }
+.ciru-postulaciones__header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 4rem; gap: 2rem;
+  flex-wrap: wrap;
+}
+.ciru-postulaciones__bases {
+  display: flex; align-items: center; gap: .5rem;
+  color: var(--secondary);
+  font: 700 .88rem/1 var(--f-body);
+  text-decoration: none;
+  transition: var(--tr);
+}
+.ciru-postulaciones__bases:hover { text-decoration: underline; color: var(--secondary); }
+.ciru-postulaciones__bases .material-symbols-outlined { font-size: 1rem; }
+
+/* Bento grid 4 cols */
+.ciru-bento {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 1.5rem;
+}
+.ciru-bento__cell {
+  background: var(--surface-container-lowest);
+  border-radius: var(--r-3xl);
+  padding: 2rem;
+  display: flex; flex-direction: column; justify-content: space-between;
+  box-shadow: var(--floating);
+  transition: var(--tr-md);
+}
+.ciru-bento__cell:hover { transform: translateY(-3px); }
+
+.ciru-bento__cell--main { grid-column: span 2; grid-row: span 2; }
+.ciru-bento__cell--dark { background: var(--primary); color: var(--on-primary); }
+.ciru-bento__cell--plain { background: var(--surface-container-lowest); border: 1px solid rgba(191,200,201,.2); }
+.ciru-bento__cell--accent {
+  background: var(--tertiary-fixed-dim);
+  color: var(--on-tertiary-fixed);
+  grid-column: span 2;
+  flex-direction: row; align-items: center; justify-content: space-between;
+  cursor: pointer;
+}
+.ciru-bento__cell--accent:hover { background: var(--tertiary-fixed); }
+
+.ciru-bento__icon {
+  width: 3rem; height: 3rem;
+  border-radius: var(--r-xl);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.5rem;
+  background: rgba(5,93,182,.08);
+}
+.ciru-bento__cell--dark .ciru-bento__icon { background: rgba(255,255,255,.1); }
+.ciru-bento__icon .material-symbols-outlined { font-size: 1.5rem; color: var(--secondary); }
+.ciru-bento__cell--dark .ciru-bento__icon .material-symbols-outlined {
+  font-size: 2.25rem; color: var(--tertiary-fixed-dim);
+}
+
+.ciru-bento__title {
+  font: 700 1.5rem/1.2 var(--f-headline);
+  color: var(--primary);
+  margin: 0 0 .75rem;
+}
+.ciru-bento__cell:not(.ciru-bento__cell--main) .ciru-bento__title { font-size: 1.2rem; }
+.ciru-bento__cell--dark .ciru-bento__title { color: var(--on-primary); }
+.ciru-bento__cell--accent .ciru-bento__title { font-size: 1.4rem; color: var(--on-tertiary-fixed); }
+
+.ciru-bento__desc {
+  font: 400 .9rem/1.65 var(--f-body);
+  color: var(--on-surface-variant);
+  margin: 0 0 1.5rem; flex: 1;
+}
+.ciru-bento__meta {
+  font: 700 .68rem/1 var(--f-body);
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--outline);
+}
+.ciru-bento__cell--accent .ciru-bento__meta { color: rgba(0,31,36,.55); }
+.ciru-bento__arrow {
+  font-size: 2.5rem !important;
+  transition: transform .2s ease;
+}
+.ciru-bento__cell--accent:hover .ciru-bento__arrow { transform: translateX(.5rem); }
+
+/* =====================================================
+   12. UBICACIÓN — card 2 columnas
+   ===================================================== */
+.ciru-ubicacion { background: var(--surface); }
+.ciru-ubicacion__card {
+  border-radius: var(--r-3xl);
+  overflow: hidden;
+  background: var(--surface-container-low);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.ciru-ubicacion__info {
+  padding: 5rem 4rem;
+  display: flex; flex-direction: column; gap: 2rem;
+}
+.ciru-ubicacion__venue {
+  font: 700 2.25rem/1.15 var(--f-headline);
+  color: var(--primary);
+  margin: 0;
+}
+.ciru-ubicacion__details { display: flex; flex-direction: column; gap: 1.5rem; }
+.ciru-ubicacion__detail { display: flex; align-items: flex-start; gap: 1rem; }
+.ciru-ubicacion__detail .material-symbols-outlined {
+  color: var(--secondary);
+  font-size: 1.4rem;
+  font-variation-settings: 'FILL' 1;
+  flex-shrink: 0; margin-top: 2px;
+}
+.ciru-ubicacion__detail h4 {
+  font: 700 .95rem/1 var(--f-body); color: var(--primary); margin: 0 0 .25rem;
+}
+.ciru-ubicacion__detail p { font: 400 .88rem/1.5 var(--f-body); color: var(--on-surface-variant); margin: 0; }
+
+.ciru-ubicacion__map {
+  min-height: 28rem;
+  position: relative;
+  overflow: hidden;
+}
+.ciru-ubicacion__map iframe,
+.ciru-ubicacion__map img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; border: none; display: block;
+}
+.ciru-ubicacion__map-label {
+  position: absolute; bottom: 1rem; left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,.55); color: #fff;
+  font: 700 .68rem/1 var(--f-body);
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: .4rem 1rem; border-radius: var(--r-full);
+  white-space: nowrap; z-index: 2;
+}
+
+/* =====================================================
+   13. CONTACTO — info + formulario card
+   ===================================================== */
+.ciru-contacto { background: var(--surface-container-low); }
+.ciru-contacto__grid {
+  display: grid;
+  grid-template-columns: 4fr 8fr;
+  gap: 3rem;
+  max-width: 75rem; margin: 0 auto;
+  align-items: start;
+}
+.ciru-contacto__info-title {
+  font: 700 1.75rem/1.2 var(--f-headline);
+  color: var(--primary); margin: 0 0 1rem;
+}
+.ciru-contacto__info-desc {
+  font: 400 .95rem/1.75 var(--f-body);
+  color: var(--on-surface-variant); margin: 0 0 2rem;
+}
+.ciru-contacto__items { display: flex; flex-direction: column; gap: 1rem; }
+.ciru-contacto__item {
+  display: flex; align-items: center; gap: 1rem;
+  font: 400 .9rem/1 var(--f-body); color: var(--primary);
+}
+.ciru-contacto__item .material-symbols-outlined { font-size: 1.2rem; flex-shrink: 0; }
+
+.ciru-form-card {
+  background: var(--surface-container-lowest);
+  padding: 2.5rem;
+  border-radius: var(--r-3xl);
+  box-shadow: var(--floating);
+}
+.ciru-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+.ciru-form__field { display: flex; flex-direction: column; gap: .5rem; }
+.ciru-form__field--full { grid-column: 1 / -1; }
+.ciru-form__label {
+  font: 700 .68rem/1 var(--f-body);
+  letter-spacing: .1em; text-transform: uppercase; color: var(--outline);
+}
+.ciru-form__input,
+.ciru-form__select,
+.ciru-form__textarea {
+  font: 400 .9rem/1 var(--f-body);
+  color: var(--on-surface);
+  background: var(--surface-container-low);
+  border: none; border-radius: var(--r-lg);
+  padding: .875rem 1rem; outline: none;
+  transition: var(--tr); width: 100%;
+}
+.ciru-form__input:focus,
+.ciru-form__select:focus,
+.ciru-form__textarea:focus {
+  box-shadow: 0 0 0 2px rgba(5,93,182,.2);
+  background: var(--surface-container-lowest);
+}
+.ciru-form__textarea { resize: vertical; min-height: 7rem; line-height: 1.5; }
+.ciru-form__submit {
+  grid-column: 1 / -1;
+  background: var(--secondary); color: var(--on-secondary);
+  font: 700 .9rem/1 var(--f-body);
+  padding: 1.1rem 2rem; border-radius: var(--r-xl);
+  border: none; cursor: pointer; width: 100%;
+  transition: var(--tr-md);
+  box-shadow: 0 4px 14px rgba(5,93,182,.3);
+}
+.ciru-form__submit:hover { background: var(--primary); transform: translateY(-1px); }
+.ciru-form__feedback {
+  grid-column: 1 / -1;
+  padding: .875rem 1rem; border-radius: var(--r-lg);
+  font: 400 .88rem/1 var(--f-body); display: none;
+}
+.ciru-form__feedback.is-success {
+  background: rgba(69,216,237,.1); color: #007a6a;
+  border: 1px solid rgba(69,216,237,.3); display: block;
+}
+.ciru-form__feedback.is-error {
+  background: rgba(186,26,26,.08); color: var(--error);
+  border: 1px solid rgba(186,26,26,.2); display: block;
+}
+
+/* =====================================================
+   14. RESPONSIVE
+   ===================================================== */
+@media (max-width: 1024px) {
+  .ciru-ubicacion__card { grid-template-columns: 1fr; }
+  .ciru-ubicacion__map { min-height: 22rem; position: relative; }
+  .ciru-precios__grid--3 { grid-template-columns: 1fr 1fr; }
+  .ciru-autoridades__header { flex-direction: column; align-items: flex-start; }
+  .ciru-autoridades__header-right { text-align: left; }
+  .ciru-contacto__grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  :root { --sec-py: 4rem; --px: 1.25rem; }
+  .ciru-hero__event-bar { display: none; }
+  .ciru-hero__dots { right: 14px; gap: 10px; }
+  .ciru-countdown__grid { grid-template-columns: repeat(2,1fr); }
+  .ciru-bienvenida__grid { grid-template-columns: 1fr; }
+  .ciru-bienvenida__quote { display: none; }
+  .ciru-autoridades__grid { grid-template-columns: 1fr; }
+  .ciru-precios__grid--3, .ciru-precios__grid--2 { grid-template-columns: 1fr; }
+  .ciru-bento { grid-template-columns: 1fr 1fr; }
+  .ciru-bento__cell--main { grid-column: span 2; grid-row: span 1; }
+  .ciru-bento__cell--accent { flex-direction: column; align-items: flex-start; }
+  .ciru-form { grid-template-columns: 1fr; }
+  .ciru-ubicacion__info { padding: 2.5rem; }
+}
+@media (max-width: 576px) {
+  .ciru-precios__tabs { flex-direction: column; border-radius: var(--r-xl); padding: .25rem; }
+  .ciru-bento { grid-template-columns: 1fr; }
+  .ciru-bento__cell--main, .ciru-bento__cell--accent { grid-column: span 1; }
+}

@@ -1,0 +1,45 @@
+# =====================================================
+# .gitignore — 76º Congreso Uruguayo de Cirugía 2026
+# =====================================================
+
+# ── Secrets y configuración local ────────────────────
+.env
+.env.local
+.env.*.local
+
+# ── WordPress local (generado en Docker) ─────────────
+wp_data/
+db_data/
+
+# ── Backups y exports SQL ────────────────────────────
+*.sql
+*.sql.gz
+backup_*.sql
+
+# ── Build artifacts ──────────────────────────────────
+*.zip
+deploy/hostinger/build/
+
+# ── Logs ─────────────────────────────────────────────
+*.log
+debug.log
+
+# ── macOS ────────────────────────────────────────────
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ── IDEs ─────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ── Astra parent theme ───────────────────────────────
+# No commitear el tema padre (es de terceros, se descarga aparte)
+astra/
+
+# ── Node/PHP dependencies (si usás) ──────────────────
+node_modules/
+vendor/

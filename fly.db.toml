@@ -1,0 +1,30 @@
+# fly.db.toml — App MariaDB (base de datos interna)
+# Sin servicios públicos — solo accesible desde la red privada de Fly.io
+# WordPress conecta via: congreso-ciru-db.internal:3306
+# Deploy: fly deploy --config fly.db.toml
+
+app            = "congreso-ciru-db"
+primary_region = "eze"
+
+[build]
+  image = "mariadb:10.11"
+
+# ── Variables no sensibles ───────────────────────────────────────────
+# Passwords se cargan con:
+#   fly secrets set MYSQL_ROOT_PASSWORD=xxx MYSQL_PASSWORD=xxx --app congreso-ciru-db
+[env]
+  MYSQL_DATABASE = "congreso_ciru"
+  MYSQL_USER     = "wp_user"
+
+# ── Volumen para datos de MariaDB ────────────────────────────────────
+# Crear con: fly volumes create db_data --app congreso-ciru-db --size 3 --region eze
+[[mounts]]
+  source      = "db_data"
+  destination = "/var/lib/mysql"
+
+# ── Sin HTTP service: solo red interna de Fly ────────────────────────
+# La máquina se mantiene corriendo continuamente (es la DB).
+[[vm]]
+  memory   = "256mb"
+  cpu_kind = "shared"
+  cpus     = 1

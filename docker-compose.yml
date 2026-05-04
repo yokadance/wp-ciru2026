@@ -1,0 +1,104 @@
+services:
+
+  # ── Base de datos ───────────────────────────────────────────────
+  db:
+    image: mariadb:10.11
+    container_name: congreso_db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE:      ${DB_NAME}
+      MYSQL_USER:          ${DB_USER}
+      MYSQL_PASSWORD:      ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - congreso_net
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  # ── WordPress ───────────────────────────────────────────────────
+  wordpress:
+    image: wordpress:latest
+    container_name: congreso_wp
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "${WP_PORT:-8080}:80"
+    environment:
+      WORDPRESS_DB_HOST:     db:3306
+      WORDPRESS_DB_NAME:     ${DB_NAME}
+      WORDPRESS_DB_USER:     ${DB_USER}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
+      WORDPRESS_DEBUG:       ${WP_DEBUG:-1}
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_DEBUG_LOG', true);
+        define('WP_DEBUG_DISPLAY', false);
+        define('SCRIPT_DEBUG', true);
+    volumes:
+      # Datos de WordPress (uploads, plugins instalados, etc.)
+      - wp_data:/var/www/html
+      # Temas montados en tiempo real — los cambios se reflejan al instante
+      - ./astra:/var/www/html/wp-content/themes/astra:ro
+      - ./astra-ciru-child:/var/www/html/wp-content/themes/astra-ciru-child
+    networks:
+      - congreso_net
+
+  # ── phpMyAdmin ──────────────────────────────────────────────────
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: congreso_pma
+    restart: unless-stopped
+    depends_on:
+      - db
+    ports:
+      - "${PMA_PORT:-8081}:80"
+    environment:
+      PMA_HOST:     db
+      PMA_USER:     ${DB_USER}
+      PMA_PASSWORD: ${DB_PASSWORD}
+      UPLOAD_LIMIT: 64M
+    networks:
+      - congreso_net
+
+  # ── WP-CLI (uso puntual: make setup / make wp cmd="...") ────────
+  wpcli:
+    image: wordpress:cli
+    container_name: congreso_wpcli
+    user: "33:33"               # www-data uid:gid
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      WORDPRESS_DB_HOST:     db:3306
+      WORDPRESS_DB_NAME:     ${DB_NAME}
+      WORDPRESS_DB_USER:     ${DB_USER}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
+      WP_CLI_CACHE_DIR:      /tmp/wp-cli-cache   # evita warning de permisos
+    volumes:
+      - wp_data:/var/www/html
+      - ./astra:/var/www/html/wp-content/themes/astra:ro
+      - ./astra-ciru-child:/var/www/html/wp-content/themes/astra-ciru-child
+    networks:
+      - congreso_net
+    profiles:
+      - cli              # Solo se inicia con: docker compose --profile cli run --rm wpcli ...
+
+# ── Volúmenes ───────────────────────────────────────────────────
+volumes:
+  db_data:
+    name: congreso_db_data
+  wp_data:
+    name: congreso_wp_data
+
+# ── Red interna ─────────────────────────────────────────────────
+networks:
+  congreso_net:
+    driver: bridge
+    name: congreso_net
