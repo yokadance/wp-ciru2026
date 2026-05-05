@@ -78,11 +78,44 @@ function congreso_auto_setup_run() {
 		update_option( 'page_on_front', $home_id );
 	}
 
-	// ── 4. PERMALINKS ─────────────────────────────────────────────────
+	// ── 4. CREAR MENÚ DE NAVEGACIÓN ──────────────────────────────────
+	$menu_name = 'Menú Principal';
+	$menu_id = wp_create_nav_menu( $menu_name );
+
+	if ( ! is_wp_error( $menu_id ) ) {
+		// Agregar páginas al menú en orden
+		$menu_items = [
+			[ 'title' => 'Inicio', 'slug' => 'inicio' ],
+			[ 'title' => 'Postulaciones', 'slug' => 'postulaciones' ],
+			[ 'title' => 'Inscripciones', 'slug' => 'inscripciones' ],
+		];
+
+		$menu_order = 1;
+		foreach ( $menu_items as $item ) {
+			$page = get_page_by_path( $item['slug'] );
+			if ( $page ) {
+				wp_update_nav_menu_item( $menu_id, 0, [
+					'menu-item-title'     => $item['title'],
+					'menu-item-object-id' => $page->ID,
+					'menu-item-object'    => 'page',
+					'menu-item-type'      => 'post_type',
+					'menu-item-status'    => 'publish',
+					'menu-item-position'  => $menu_order++,
+				] );
+			}
+		}
+
+		// Asignar menú a la ubicación del tema (Astra usa 'primary')
+		$locations = get_theme_mod( 'nav_menu_locations' );
+		$locations['primary'] = $menu_id;
+		set_theme_mod( 'nav_menu_locations', $locations );
+	}
+
+	// ── 5. PERMALINKS ─────────────────────────────────────────────────
 	update_option( 'permalink_structure', '/%postname%/' );
 	flush_rewrite_rules();
 
-	// ── 5. MARCAR COMO COMPLETADO ────────────────────────────────────
+	// ── 6. MARCAR COMO COMPLETADO ────────────────────────────────────
 	update_option( 'congreso_auto_setup_done', true );
 
 	// Mensaje admin

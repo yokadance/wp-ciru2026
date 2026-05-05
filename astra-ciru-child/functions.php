@@ -23,7 +23,7 @@ function congreso_enqueue_assets() {
 		'congreso-style',
 		get_stylesheet_directory_uri() . '/assets/css/congreso.css',
 		[ 'astra-parent', 'material-symbols' ],
-		'1.2.0'
+		'1.3.0'  // Incrementado para forzar cache bust
 	);
 
 	wp_enqueue_script(
@@ -188,3 +188,9 @@ function congreso_price_card( array $plan ): void {
 	</div>
 	<?php
 }
+
+
+/* -------------------------------------------------------
+   7. PANEL DE ADMINISTRACIÓN
+------------------------------------------------------- */
+require_once get_stylesheet_directory() . '/admin/precios-admin.php';

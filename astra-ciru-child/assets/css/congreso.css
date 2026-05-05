@@ -652,7 +652,9 @@ body.page-template-page-postulaciones article {
   color: var(--on-surface-variant);
   margin-bottom: 1.5rem;
 }
-.ciru-price-card.is-featured .ciru-price-card__subtitle { color: rgba(255,255,255,.7); }
+.ciru-price-card.is-featured .ciru-price-card__subtitle {
+  color: rgba(255,255,255,.8) !important;
+}
 
 .ciru-price-card__hr {
   border: none;
@@ -669,7 +671,9 @@ body.page-template-page-postulaciones article {
   color: var(--secondary);
   margin-bottom: .75rem;
 }
-.ciru-price-card.is-featured .ciru-price-card__price-label { color: var(--tertiary-fixed-dim); }
+.ciru-price-card.is-featured .ciru-price-card__price-label {
+  color: var(--tertiary-fixed-dim) !important;
+}
 
 .ciru-price-card__amount { display: flex; align-items: baseline; gap: .3rem; margin-bottom: 2rem; }
 .ciru-price-card__number {
