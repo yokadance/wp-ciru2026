@@ -37,7 +37,14 @@ jobs:
             **/.gitignore
             **/README.md
 
+      - name: Clear server-side cache
+        run: |
+          echo "Clearing OPcache and WP cache..."
+          curl -s "https://congresoscu.org/wp-content/themes/astra-ciru-child/opcache-clear.php?token=${{ secrets.CACHE_CLEAR_TOKEN }}"
+          sleep 2
+
       - name: Deployment summary
         run: |
           echo "✅ Child theme deployed to Hostinger"
+          echo "🔄 Server cache cleared"
           echo "🌐 Site: https://congresoscu.org"
