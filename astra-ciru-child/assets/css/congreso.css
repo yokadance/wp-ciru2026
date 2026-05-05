@@ -78,7 +78,9 @@ body.page-template-page-postulaciones #congreso-page-postulaciones {
 body.congreso-front-page #congreso-main > section,
 body.congreso-front-page #congreso-main > .ciru-hero,
 body.page-template-page-inscripciones .ciru-section,
-body.page-template-page-postulaciones .ciru-section {
+body.page-template-page-inscripciones .ciru-page-hero,
+body.page-template-page-postulaciones .ciru-section,
+body.page-template-page-postulaciones .ciru-page-hero {
   width: 100% !important;
   max-width: 100% !important;
   margin-left: 0 !important;
@@ -94,11 +96,23 @@ body.page-template-page-inscripciones .ast-container,
 body.page-template-page-postulaciones #content,
 body.page-template-page-postulaciones .ast-container {
   max-width: 100% !important;
+  padding: 0 !important;
 }
 body.congreso-front-page .site-content,
 body.page-template-page-inscripciones .site-content,
 body.page-template-page-postulaciones .site-content {
   padding: 0 !important;
+}
+body.page-template-page-inscripciones #primary,
+body.page-template-page-postulaciones #primary,
+body.page-template-page-inscripciones .entry-content,
+body.page-template-page-postulaciones .entry-content,
+body.page-template-page-inscripciones article,
+body.page-template-page-postulaciones article {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 /* =====================================================
