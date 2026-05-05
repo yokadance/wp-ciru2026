@@ -28,6 +28,8 @@ jobs:
           local-dir: ./astra-ciru-child/
           server-dir: /public_html/wp-content/themes/astra-ciru-child/
           dangerous-clean-slate: false
+          state-name: .ftp-deploy-sync-state-${{ github.sha }}.json  # Nuevo estado cada commit
+          log-level: verbose  # Ver qué archivos se suben
           exclude: |
             **/.git*
             **/.DS_Store
