@@ -17,19 +17,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Deploy via FTP
+      - name: Deploy via SFTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 65002
           local-dir: ./astra-ciru-child/
-          server-dir: /public_html/wp-content/themes/astra-ciru-child/
-          dangerous-clean-slate: false  # NO borrar todo antes de subir
+          server-dir: /domains/congresoscu.org/public_html/wp-content/themes/astra-ciru-child/
+          dangerous-clean-slate: false
           exclude: |
             **/.git*
             **/.DS_Store
             **/node_modules/**
+            **/.gitignore
 
       - name: Deployment summary
         run: |
