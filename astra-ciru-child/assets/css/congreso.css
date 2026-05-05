@@ -187,6 +187,15 @@ body.page-template-page-postulaciones article {
   width: 100% !important;
   z-index: 999 !important;
 }
+
+/* Contenedor interno del header - mismo padding en todas las páginas */
+.site-header .ast-container,
+.site-header .main-header-container {
+  max-width: var(--max-w) !important;
+  margin: 0 auto !important;
+  padding-left: var(--px) !important;
+  padding-right: var(--px) !important;
+}
 .ast-site-identity .site-title a,
 .ast-site-identity .site-title {
   font: 800 1.1rem/1 var(--f-headline) !important;
@@ -626,11 +635,13 @@ body.page-template-page-postulaciones article {
 
 .ciru-precios__panel {
   display: none;
-  min-height: 400px;  /* Altura mínima para evitar saltos */
+  min-height: 400px;
+  width: 100%;
+  max-width: var(--max-w);  /* MISMO ancho para todos los paneles */
+  margin: 0 auto;
 }
 .ciru-precios__panel.is-active {
-  display: flex;
-  justify-content: center;  /* Centra el grid */
+  display: block;  /* Cambio de flex a block */
   animation: ciruFadeUp .32s ease;
 }
 
@@ -643,16 +654,16 @@ body.page-template-page-postulaciones article {
   display: grid;
   gap: 2rem;
   align-items: start;
-  width: 100%;
-  max-width: var(--max-w);  /* Ancho máximo consistente */
-  margin: 0 auto;
+  margin: 0 auto;  /* Centra el grid */
 }
 .ciru-precios__grid--3 {
   grid-template-columns: repeat(3,1fr);
+  width: 100%;  /* Usa todo el ancho del panel */
 }
 .ciru-precios__grid--2 {
   grid-template-columns: repeat(2,1fr);
-  max-width: 52rem;
+  max-width: 52rem;  /* Grid de 2 cols más estrecho pero centrado */
+  margin: 0 auto;
 }
 
 /* Price card */

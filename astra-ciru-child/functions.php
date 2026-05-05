@@ -23,7 +23,7 @@ function congreso_enqueue_assets() {
 		'congreso-style',
 		get_stylesheet_directory_uri() . '/assets/css/congreso.css',
 		[ 'astra-parent', 'material-symbols' ],
-		'2.0.0'  // FIX DEFINITIVO: ancho 100% forzado + scrollbar permanente
+		'2.0.1'  // Fix: paneles con ancho fijo + header padding consistente
 	);
 
 	wp_enqueue_script(
