@@ -93,7 +93,7 @@ $precios_instrumentacion = $precios_data['instrumentacion'] ?? [];
 
 		<!-- Panel Enfermería -->
 		<div class="ciru-precios__panel" id="tab-enfermeria">
-			<div class="ciru-precios__grid ciru-precios__grid--2">
+			<div class="ciru-precios__grid ciru-precios__grid--3">
 				<?php foreach ( $precios_enfermeria as $plan ) : ?>
 					<?php congreso_price_card( $plan ); ?>
 				<?php endforeach; ?>
@@ -102,7 +102,7 @@ $precios_instrumentacion = $precios_data['instrumentacion'] ?? [];
 
 		<!-- Panel Instrumentación -->
 		<div class="ciru-precios__panel" id="tab-instrumentacion">
-			<div class="ciru-precios__grid ciru-precios__grid--2">
+			<div class="ciru-precios__grid ciru-precios__grid--3">
 				<?php foreach ( $precios_instrumentacion as $plan ) : ?>
 					<?php congreso_price_card( $plan ); ?>
 				<?php endforeach; ?>

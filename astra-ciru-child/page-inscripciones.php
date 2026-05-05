@@ -12,7 +12,7 @@ get_header();
 ?>
 
 <style>
-/* ESTILOS INLINE - NO DEPENDEN DE CACHE */
+/* ESTILOS INLINE - GRID FIJO 3 COLUMNAS */
 #congreso-page-inscripciones {
   width: 100vw !important;
   max-width: 100vw !important;
@@ -20,40 +20,31 @@ get_header();
   padding: 0 !important;
   overflow-x: hidden !important;
 }
-#congreso-page-inscripciones > * {
-  width: 100% !important;
-  max-width: 100vw !important;
-}
-/* GRIDS CON ANCHO FIJO */
-.ciru-precios__panel {
-  max-width: 1280px !important;
-  margin: 0 auto !important;
-}
-.ciru-precios__grid {
-  max-width: 1280px !important;
-  margin: 0 auto !important;
-}
+/* TODOS los grids usan 3 columnas (mismo ancho siempre) */
+.ciru-precios__grid,
 .ciru-precios__grid--3 {
   display: grid !important;
   grid-template-columns: repeat(3, 1fr) !important;
   gap: 2rem !important;
-}
-.ciru-precios__grid--2 {
-  display: grid !important;
-  grid-template-columns: 1fr 1fr 1fr !important;
-  gap: 2rem !important;
-}
-.ciru-precios__grid--2 .ciru-price-card:nth-child(1) {
-  grid-column: 1 / 2 !important;
-}
-.ciru-precios__grid--2 .ciru-price-card:nth-child(2) {
-  grid-column: 2 / 3 !important;
-}
-/* HEADER IGUAL QUE HOME */
-.site-header .ast-container {
   max-width: 1280px !important;
-  padding-left: 2rem !important;
-  padding-right: 2rem !important;
+  margin: 0 auto !important;
+}
+.ciru-precios__panel {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+}
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .ciru-precios__grid,
+  .ciru-precios__grid--3 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+@media (max-width: 768px) {
+  .ciru-precios__grid,
+  .ciru-precios__grid--3 {
+    grid-template-columns: 1fr !important;
+  }
 }
 </style>
 
@@ -96,34 +87,27 @@ get_header();
 </main>
 
 <script>
-// FORZAR LAYOUT CORRECTO - EJECUTA INMEDIATAMENTE
+// GARANTIZAR GRID DE 3 COLUMNAS EN TODOS LOS TABS
 (function() {
-  function forceLayout() {
-    // Forzar todos los grids al mismo ancho
-    const grids = document.querySelectorAll('.ciru-precios__grid');
+  function forceGrid3Cols() {
+    const grids = document.querySelectorAll('.ciru-precios__grid, .ciru-precios__grid--3');
     grids.forEach(grid => {
+      grid.style.gridTemplateColumns = 'repeat(3, 1fr)';
       grid.style.maxWidth = '1280px';
       grid.style.margin = '0 auto';
     });
-
-    // Grid de 2 columnas usa 3 columnas para mantener ancho
-    const grid2 = document.querySelectorAll('.ciru-precios__grid--2');
-    grid2.forEach(g => {
-      g.style.gridTemplateColumns = '1fr 1fr 1fr';
-    });
   }
 
-  // Ejecutar al cargar
+  // Ejecutar inmediatamente y después de cargar
+  forceGrid3Cols();
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', forceLayout);
-  } else {
-    forceLayout();
+    document.addEventListener('DOMContentLoaded', forceGrid3Cols);
   }
 
-  // Ejecutar después de cada cambio de tab
+  // Re-aplicar al cambiar tabs
   document.addEventListener('click', function(e) {
     if (e.target.classList.contains('ciru-precios__tab')) {
-      setTimeout(forceLayout, 100);
+      setTimeout(forceGrid3Cols, 50);
     }
   });
 })();

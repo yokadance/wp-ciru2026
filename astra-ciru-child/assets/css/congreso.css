@@ -655,9 +655,8 @@ body.page-template-page-postulaciones article {
 
 .ciru-precios__panel {
   display: none !important;
-  min-height: 400px !important;
   width: 100% !important;
-  max-width: 1280px !important;  /* ANCHO FIJO PARA TODOS */
+  max-width: var(--max-w) !important;
   margin: 0 auto !important;
   padding: 0 !important;
 }
@@ -671,23 +670,16 @@ body.page-template-page-postulaciones article {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-.ciru-precios__grid {
+/* TODOS los grids iguales - 3 columnas en desktop */
+.ciru-precios__grid,
+.ciru-precios__grid--3 {
   display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
   gap: 2rem !important;
   align-items: start !important;
   margin: 0 auto !important;
   width: 100% !important;
-}
-.ciru-precios__grid--3 {
-  grid-template-columns: repeat(3, 1fr) !important;
-  max-width: 1280px !important;  /* MISMO ancho que panel */
-  width: 100% !important;
-}
-.ciru-precios__grid--2 {
-  grid-template-columns: repeat(2, 1fr) !important;
-  max-width: 1280px !important;  /* MISMO ancho que grid de 3 */
-  width: 100% !important;
-  justify-items: center !important;  /* Centra las cards */
+  max-width: var(--max-w) !important;
 }
 
 /* Price card */
@@ -1027,7 +1019,11 @@ body.page-template-page-postulaciones article {
 @media (max-width: 1024px) {
   .ciru-ubicacion__card { grid-template-columns: 1fr; }
   .ciru-ubicacion__map { min-height: 22rem; position: relative; }
-  .ciru-precios__grid--3 { grid-template-columns: 1fr 1fr; }
+  /* TODOS los grids de precios → 2 columnas en tablet */
+  .ciru-precios__grid,
+  .ciru-precios__grid--3 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
   .ciru-autoridades__header { flex-direction: column; align-items: flex-start; }
   .ciru-autoridades__header-right { text-align: left; }
   .ciru-contacto__grid { grid-template-columns: 1fr; }
@@ -1040,7 +1036,11 @@ body.page-template-page-postulaciones article {
   .ciru-bienvenida__grid { grid-template-columns: 1fr; }
   .ciru-bienvenida__quote { display: none; }
   .ciru-autoridades__grid { grid-template-columns: 1fr; }
-  .ciru-precios__grid--3, .ciru-precios__grid--2 { grid-template-columns: 1fr; }
+  /* TODOS los grids de precios → 1 columna en mobile */
+  .ciru-precios__grid,
+  .ciru-precios__grid--3 {
+    grid-template-columns: 1fr !important;
+  }
   .ciru-bento { grid-template-columns: 1fr 1fr; }
   .ciru-bento__cell--main { grid-column: span 2; grid-row: span 1; }
   .ciru-bento__cell--accent { flex-direction: column; align-items: flex-start; }
