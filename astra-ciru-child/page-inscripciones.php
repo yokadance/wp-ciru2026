@@ -11,7 +11,10 @@ defined( 'ABSPATH' ) || exit;
 get_header();
 ?>
 
-<div id="congreso-page-inscripciones">
+</div><!-- /ast-container — cerrado para full-width -->
+</div><!-- /#content — cerrado para full-width -->
+
+<main id="congreso-page-inscripciones" role="main">
 
 	<!-- Hero de página -->
 	<div style="background:linear-gradient(135deg,#1A2E4A 0%,#3C619C 100%);padding:60px 0;color:#fff;">
@@ -44,6 +47,13 @@ get_header();
 		</div>
 	</div>
 
-</div>
+</main>
+
+<?php
+// Dos <div> vacíos para balancear los que footer.php cierra:
+//   </div><!-- ast-container -->
+//   </div><!-- #content -->
+?>
+<div hidden><div hidden>
 
 <?php get_footer(); ?>
