@@ -1014,7 +1014,36 @@ body.page-template-page-postulaciones article {
 }
 
 /* =====================================================
-   14. RESPONSIVE
+   14. FORCE FULL-WIDTH — Sobrescribe limitaciones de Astra
+   ===================================================== */
+
+/* RESETEAR variables CSS de Astra */
+body.page-template-page-inscripciones,
+body.page-template-page-postulaciones {
+  --ast-normal-container-width: 100vw !important;
+  --ast-narrow-container-width: 100vw !important;
+  --ast-container-width: 100vw !important;
+  --wp--custom--ast-content-width-size: 100vw !important;
+  --wp--custom--ast-wide-width-size: 100vw !important;
+}
+
+/* Forzar ancho completo en TODOS los contenedores de Astra */
+body.page-template-page-inscripciones .ast-container,
+body.page-template-page-postulaciones .ast-container,
+body.page-template-page-inscripciones .site-content,
+body.page-template-page-postulaciones .site-content,
+body.page-template-page-inscripciones #primary,
+body.page-template-page-postulaciones #primary {
+  max-width: 100vw !important;
+  width: 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* =====================================================
+   15. RESPONSIVE
    ===================================================== */
 @media (max-width: 1024px) {
   .ciru-ubicacion__card { grid-template-columns: 1fr; }
