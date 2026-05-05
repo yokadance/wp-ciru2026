@@ -45,31 +45,45 @@ add_action( 'wp_enqueue_scripts', 'congreso_enqueue_assets' );
 /* -------------------------------------------------------
    2. LAYOUT FULL-WIDTH EN FRONT PAGE (Astra hooks)
 ------------------------------------------------------- */
+function congreso_is_full_width_page() {
+	return is_front_page()
+		|| is_page_template( 'page-inscripciones.php' )
+		|| is_page_template( 'page-postulaciones.php' );
+}
+
 add_filter( 'astra_page_layout', function ( $layout ) {
-	if ( is_front_page() ) {
-		return 'no-sidebar';
+	if ( congreso_is_full_width_page() ) {
+		return 'page-builder';  // Layout sin contenedor
 	}
 	return $layout;
 } );
 
 add_filter( 'astra_post_layout', function ( $layout ) {
-	if ( is_front_page() ) {
-		return 'no-sidebar';
+	if ( congreso_is_full_width_page() ) {
+		return 'page-builder';
 	}
 	return $layout;
 } );
 
-// Deshabilitar el título de página de Astra en el front page
+// Deshabilitar contenedor de Astra
+add_filter( 'astra_get_content_layout', function ( $layout ) {
+	if ( congreso_is_full_width_page() ) {
+		return 'page-builder';
+	}
+	return $layout;
+} );
+
+// Deshabilitar el título de página de Astra
 add_filter( 'astra_the_title_enabled', function ( $enabled ) {
-	if ( is_front_page() ) {
+	if ( congreso_is_full_width_page() ) {
 		return false;
 	}
 	return $enabled;
 } );
 
-// Breadcrumbs off en front page
+// Breadcrumbs off
 add_filter( 'astra_breadcrumbs_enabled', function ( $enabled ) {
-	if ( is_front_page() ) {
+	if ( congreso_is_full_width_page() ) {
 		return false;
 	}
 	return $enabled;
