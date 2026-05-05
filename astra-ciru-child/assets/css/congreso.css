@@ -66,7 +66,9 @@ body  { background: var(--background); color: var(--on-surface); font-family: va
 img   { max-width: 100%; display: block; }
 
 /* Full-width: el main está fuera del ast-container (ver front-page.php) */
-body.congreso-front-page #congreso-main {
+body.congreso-front-page #congreso-main,
+body.page-template-page-inscripciones #congreso-page-inscripciones,
+body.page-template-page-postulaciones #congreso-page-postulaciones {
   width: 100% !important;
   max-width: 100% !important;
   padding: 0 !important;
@@ -74,7 +76,9 @@ body.congreso-front-page #congreso-main {
   float: none !important;
 }
 body.congreso-front-page #congreso-main > section,
-body.congreso-front-page #congreso-main > .ciru-hero {
+body.congreso-front-page #congreso-main > .ciru-hero,
+body.page-template-page-inscripciones .ciru-section,
+body.page-template-page-postulaciones .ciru-section {
   width: 100% !important;
   max-width: 100% !important;
   margin-left: 0 !important;
@@ -84,10 +88,16 @@ body.congreso-front-page #congreso-main > .ciru-hero {
 }
 /* Asegurarse que Astra no restrinja el layout de la página */
 body.congreso-front-page #content,
-body.congreso-front-page .ast-container {
+body.congreso-front-page .ast-container,
+body.page-template-page-inscripciones #content,
+body.page-template-page-inscripciones .ast-container,
+body.page-template-page-postulaciones #content,
+body.page-template-page-postulaciones .ast-container {
   max-width: 100% !important;
 }
-body.congreso-front-page .site-content {
+body.congreso-front-page .site-content,
+body.page-template-page-inscripciones .site-content,
+body.page-template-page-postulaciones .site-content {
   padding: 0 !important;
 }
 
@@ -572,11 +582,17 @@ body.congreso-front-page .site-content {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-.ciru-precios__grid { display: grid; gap: 2rem; align-items: start; }
+.ciru-precios__grid {
+  display: grid;
+  gap: 2rem;
+  align-items: start;
+  width: 100%;
+}
 .ciru-precios__grid--3 { grid-template-columns: repeat(3,1fr); }
 .ciru-precios__grid--2 {
   grid-template-columns: repeat(2,1fr);
-  max-width: 44rem; margin: 0 auto;
+  max-width: 52rem;
+  margin: 0 auto;
 }
 
 /* Price card */
@@ -613,9 +629,33 @@ body.congreso-front-page .site-content {
 .ciru-price-card__title {
   font: 700 1rem/1 var(--f-body);
   color: var(--outline);
-  margin: 0 0 1rem;
+  margin: 0 0 .5rem;
 }
 .ciru-price-card.is-featured .ciru-price-card__title { color: var(--on-primary-container); }
+
+.ciru-price-card__subtitle {
+  font: 400 .85rem/1.4 var(--f-body);
+  color: var(--on-surface-variant);
+  margin-bottom: 1.5rem;
+}
+.ciru-price-card.is-featured .ciru-price-card__subtitle { color: rgba(255,255,255,.7); }
+
+.ciru-price-card__hr {
+  border: none;
+  border-top: 1px solid var(--outline-variant);
+  margin: 0 0 1rem;
+}
+.ciru-price-card.is-featured .ciru-price-card__hr { border-color: rgba(255,255,255,.2); }
+
+.ciru-price-card__price-label {
+  display: block;
+  font: 600 .72rem/1 var(--f-body);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--secondary);
+  margin-bottom: .75rem;
+}
+.ciru-price-card.is-featured .ciru-price-card__price-label { color: var(--tertiary-fixed-dim); }
 
 .ciru-price-card__amount { display: flex; align-items: baseline; gap: .3rem; margin-bottom: 2rem; }
 .ciru-price-card__number {
@@ -625,6 +665,17 @@ body.congreso-front-page .site-content {
 .ciru-price-card.is-featured .ciru-price-card__number { color: var(--on-primary); }
 .ciru-price-card__currency { font: 400 .82rem/1 var(--f-body); color: var(--outline); }
 .ciru-price-card.is-featured .ciru-price-card__currency { color: var(--on-primary-container); }
+
+.ciru-price-card__period {
+  display: block;
+  font: 400 .82rem/1 var(--f-body);
+  color: var(--on-surface-variant);
+  text-decoration: line-through;
+  opacity: .6;
+  margin-top: -.5rem;
+  margin-bottom: 1.5rem;
+}
+.ciru-price-card.is-featured .ciru-price-card__period { color: rgba(255,255,255,.6); }
 
 .ciru-price-card__features {
   list-style: none; padding: 0;

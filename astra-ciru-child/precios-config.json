@@ -1,0 +1,128 @@
+{
+  "cirugia": [
+    {
+      "titulo": "Socio SCC",
+      "subtitulo": "Socio activo de la Sociedad de Cirugía del Uruguay",
+      "precio": "000",
+      "moneda": "USD",
+      "periodo": "precio anticipado",
+      "precio_regular": "000",
+      "featured": false,
+      "badge": null,
+      "features": [
+        "Acceso a todas las sesiones científicas",
+        "Material digital del congreso",
+        "Coffee breaks incluidos",
+        "Certificado de asistencia"
+      ],
+      "href": "#contacto"
+    },
+    {
+      "titulo": "No Socio",
+      "subtitulo": "Cirujanos no afiliados a la SCC",
+      "precio": "000",
+      "moneda": "USD",
+      "periodo": "precio regular",
+      "precio_regular": "",
+      "featured": true,
+      "badge": "Más elegido",
+      "features": [
+        "Acceso a todas las sesiones científicas",
+        "Material digital del congreso",
+        "Coffee breaks incluidos",
+        "Certificado de asistencia",
+        "Acceso a talleres prácticos"
+      ],
+      "href": "#contacto"
+    },
+    {
+      "titulo": "Residente",
+      "subtitulo": "XXXVI Jornadas de Residentes de Cirugía",
+      "precio": "000",
+      "moneda": "USD",
+      "periodo": "precio especial",
+      "precio_regular": "",
+      "featured": false,
+      "badge": null,
+      "features": [
+        "Acceso a todas las sesiones científicas",
+        "Material digital del congreso",
+        "Coffee breaks incluidos",
+        "Certificado de asistencia"
+      ],
+      "href": "#contacto"
+    }
+  ],
+  "enfermeria": [
+    {
+      "titulo": "Profesional",
+      "subtitulo": "Enfermeros/as en ejercicio",
+      "precio": "0000",
+      "moneda": "UYU",
+      "periodo": "precio anticipado",
+      "precio_regular": "0000",
+      "featured": false,
+      "badge": null,
+      "features": [
+        "Acceso a todas las jornadas",
+        "Material científico digital",
+        "Coffee breaks incluidos",
+        "Certificado de asistencia"
+      ],
+      "href": "#contacto"
+    },
+    {
+      "titulo": "Estudiante",
+      "subtitulo": "Estudiantes de enfermería",
+      "precio": "0000",
+      "moneda": "UYU",
+      "periodo": "precio especial",
+      "precio_regular": "",
+      "featured": true,
+      "badge": null,
+      "features": [
+        "Acceso a todas las jornadas",
+        "Material científico digital",
+        "Coffee breaks incluidos",
+        "Certificado de asistencia"
+      ],
+      "href": "#contacto"
+    }
+  ],
+  "instrumentacion": [
+    {
+      "titulo": "Asociado AUIQ",
+      "subtitulo": "Miembro de la Asociación Uruguaya de Instrumentistas Quirúrgicos",
+      "precio": "0000",
+      "moneda": "UYU",
+      "periodo": "precio anticipado",
+      "precio_regular": "0000",
+      "featured": false,
+      "badge": null,
+      "features": [
+        "Acceso a todas las jornadas",
+        "Material científico digital",
+        "Coffee breaks incluidos",
+        "Certificado de asistencia"
+      ],
+      "href": "#contacto"
+    },
+    {
+      "titulo": "No Asociado",
+      "subtitulo": "Instrumentistas no afiliados a AUIQ",
+      "precio": "0000",
+      "moneda": "UYU",
+      "periodo": "precio regular",
+      "precio_regular": "",
+      "featured": true,
+      "badge": null,
+      "features": [
+        "Acceso a todas las jornadas",
+        "Material científico digital",
+        "Coffee breaks incluidos",
+        "Certificado de asistencia"
+      ],
+      "href": "#contacto"
+    }
+  ]
+}

@@ -2,10 +2,10 @@
 /**
  * Módulo: Precios / Inscripciones
  *
- * EDITAR: Actualice precios, modalidades y links en los arrays
- * $precios_cirugia, $precios_enfermeria, $precios_instrumentacion.
+ * EDITAR PRECIOS: Editar el archivo precios-config.json en la raíz del tema.
+ * Podés editarlo desde File Manager de Hostinger o vía FTP.
  *
- * Campos de cada plan:
+ * Campos de cada plan en el JSON:
  *   titulo       → nombre de la categoría
  *   subtitulo    → descripción breve
  *   precio       → valor (sin símbolo)
@@ -19,137 +19,19 @@
  */
 defined( 'ABSPATH' ) || exit;
 
-/* ── CIRUGÍA / RESIDENTES ────────────────────────────── */
-$precios_cirugia = [
-	[
-		'titulo'         => 'Socio SCC',
-		'subtitulo'      => 'Socio activo de la Sociedad de Cirugía del Uruguay',
-		'precio'         => '000',       // EDITAR
-		'moneda'         => 'USD',
-		'periodo'        => 'precio anticipado',
-		'precio_regular' => '000',       // EDITAR — dejar igual si no hay descuento
-		'featured'       => false,
-		'badge'          => null,
-		'features'       => [
-			'Acceso a todas las sesiones científicas',
-			'Material digital del congreso',
-			'Coffee breaks incluidos',
-			'Certificado de asistencia',
-		],
-		'href'           => '#contacto',
-	],
-	[
-		'titulo'         => 'No Socio',
-		'subtitulo'      => 'Cirujanos no afiliados a la SCC',
-		'precio'         => '000',       // EDITAR
-		'moneda'         => 'USD',
-		'periodo'        => 'precio regular',
-		'precio_regular' => '',
-		'featured'       => true,
-		'badge'          => 'Más elegido',
-		'features'       => [
-			'Acceso a todas las sesiones científicas',
-			'Material digital del congreso',
-			'Coffee breaks incluidos',
-			'Certificado de asistencia',
-			'Acceso a talleres prácticos',
-		],
-		'href'           => '#contacto',
-	],
-	[
-		'titulo'         => 'Residente',
-		'subtitulo'      => 'XXXVI Jornadas de Residentes de Cirugía',
-		'precio'         => '000',       // EDITAR
-		'moneda'         => 'USD',
-		'periodo'        => 'precio especial',
-		'precio_regular' => '',
-		'featured'       => false,
-		'badge'          => null,
-		'features'       => [
-			'Acceso a todas las sesiones científicas',
-			'Material digital del congreso',
-			'Coffee breaks incluidos',
-			'Certificado de asistencia',
-		],
-		'href'           => '#contacto',
-	],
-];
+// Leer configuración desde JSON
+$config_file = get_stylesheet_directory() . '/precios-config.json';
+$precios_data = [];
 
-/* ── ENFERMERÍA ──────────────────────────────────────── */
-$precios_enfermeria = [
-	[
-		'titulo'         => 'Profesional',
-		'subtitulo'      => 'Enfermeros/as en ejercicio',
-		'precio'         => '0000',      // EDITAR
-		'moneda'         => 'UYU',
-		'periodo'        => 'precio anticipado',
-		'precio_regular' => '0000',      // EDITAR
-		'featured'       => false,
-		'badge'          => null,
-		'features'       => [
-			'Acceso a todas las jornadas',
-			'Material científico digital',
-			'Coffee breaks incluidos',
-			'Certificado de asistencia',
-		],
-		'href'           => '#contacto',
-	],
-	[
-		'titulo'         => 'Estudiante',
-		'subtitulo'      => 'Estudiantes de enfermería',
-		'precio'         => '0000',      // EDITAR
-		'moneda'         => 'UYU',
-		'periodo'        => 'precio especial',
-		'precio_regular' => '',
-		'featured'       => true,
-		'badge'          => null,
-		'features'       => [
-			'Acceso a todas las jornadas',
-			'Material científico digital',
-			'Coffee breaks incluidos',
-			'Certificado de asistencia',
-		],
-		'href'           => '#contacto',
-	],
-];
+if ( file_exists( $config_file ) ) {
+	$json_content = file_get_contents( $config_file );
+	$precios_data = json_decode( $json_content, true );
+}
 
-/* ── INSTRUMENTACIÓN ─────────────────────────────────── */
-$precios_instrumentacion = [
-	[
-		'titulo'         => 'Asociado AUIQ',
-		'subtitulo'      => 'Miembro de la Asociación Uruguaya de Instrumentistas Quirúrgicos',
-		'precio'         => '0000',      // EDITAR
-		'moneda'         => 'UYU',
-		'periodo'        => 'precio anticipado',
-		'precio_regular' => '0000',      // EDITAR
-		'featured'       => false,
-		'badge'          => null,
-		'features'       => [
-			'Acceso a todas las jornadas',
-			'Material científico digital',
-			'Coffee breaks incluidos',
-			'Certificado de asistencia',
-		],
-		'href'           => '#contacto',
-	],
-	[
-		'titulo'         => 'No Asociado',
-		'subtitulo'      => 'Instrumentistas no afiliados a AUIQ',
-		'precio'         => '0000',      // EDITAR
-		'moneda'         => 'UYU',
-		'periodo'        => 'precio regular',
-		'precio_regular' => '',
-		'featured'       => true,
-		'badge'          => null,
-		'features'       => [
-			'Acceso a todas las jornadas',
-			'Material científico digital',
-			'Coffee breaks incluidos',
-			'Certificado de asistencia',
-		],
-		'href'           => '#contacto',
-	],
-];
+// Fallback a valores por defecto si falla la lectura del JSON
+$precios_cirugia = isset( $precios_data['cirugia'] ) ? $precios_data['cirugia'] : [];
+$precios_enfermeria = isset( $precios_data['enfermeria'] ) ? $precios_data['enfermeria'] : [];
+$precios_instrumentacion = isset( $precios_data['instrumentacion'] ) ? $precios_data['instrumentacion'] : [];
 ?>
 
 <section class="ciru-section ciru-precios" id="inscripciones">
