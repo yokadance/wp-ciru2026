@@ -17,19 +17,23 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup SSH key
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -p 65002 ${{ secrets.FTP_SERVER }} >> ~/.ssh/known_hosts
-
-      - name: Deploy via rsync over SSH
-        run: |
-          rsync -avz --delete \
-            -e "ssh -i ~/.ssh/deploy_key -p 65002 -o StrictHostKeyChecking=no" \
-            astra-ciru-child/ \
-            ${{ secrets.FTP_USERNAME }}@${{ secrets.FTP_SERVER }}:/domains/congresoscu.org/public_html/wp-content/themes/astra-ciru-child/
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftp
+          port: 21
+          local-dir: ./astra-ciru-child/
+          server-dir: /public_html/wp-content/themes/astra-ciru-child/
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.DS_Store
+            **/node_modules/**
+            **/.gitignore
+            **/README.md
 
       - name: Deployment summary
         run: |
