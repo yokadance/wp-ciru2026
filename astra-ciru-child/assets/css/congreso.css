@@ -603,10 +603,16 @@ body.page-template-page-postulaciones article {
 }
 
 /* =====================================================
-   10. PRECIOS — pill tabs + 3 cards
+   10. PRECIOS — pill tabs + 3 cards — FIX ULTRA AGRESIVO
    ===================================================== */
-.ciru-precios { background: var(--surface); }
-.ciru-precios__header { text-align: center; margin-bottom: 4rem; }
+.ciru-precios {
+  background: var(--surface) !important;
+  overflow-x: hidden !important;
+}
+.ciru-precios__header {
+  text-align: center !important;
+  margin-bottom: 4rem !important;
+}
 
 .ciru-precios__tabs {
   display: inline-flex;
@@ -634,14 +640,15 @@ body.page-template-page-postulaciones article {
 .ciru-precios__tab:hover:not(.is-active) { color: var(--primary); }
 
 .ciru-precios__panel {
-  display: none;
-  min-height: 400px;
-  width: 100%;
-  max-width: var(--max-w);  /* MISMO ancho para todos los paneles */
-  margin: 0 auto;
+  display: none !important;
+  min-height: 400px !important;
+  width: 100% !important;
+  max-width: 1280px !important;  /* ANCHO FIJO PARA TODOS */
+  margin: 0 auto !important;
+  padding: 0 !important;
 }
 .ciru-precios__panel.is-active {
-  display: block;  /* Cambio de flex a block */
+  display: block !important;
   animation: ciruFadeUp .32s ease;
 }
 
@@ -651,19 +658,22 @@ body.page-template-page-postulaciones article {
 }
 
 .ciru-precios__grid {
-  display: grid;
-  gap: 2rem;
-  align-items: start;
-  margin: 0 auto;  /* Centra el grid */
+  display: grid !important;
+  gap: 2rem !important;
+  align-items: start !important;
+  margin: 0 auto !important;
+  width: 100% !important;
 }
 .ciru-precios__grid--3 {
-  grid-template-columns: repeat(3,1fr);
-  width: 100%;  /* Usa todo el ancho del panel */
+  grid-template-columns: repeat(3, 1fr) !important;
+  max-width: 1280px !important;  /* MISMO ancho que panel */
+  width: 100% !important;
 }
 .ciru-precios__grid--2 {
-  grid-template-columns: repeat(2,1fr);
-  max-width: 52rem;  /* Grid de 2 cols más estrecho pero centrado */
-  margin: 0 auto;
+  grid-template-columns: repeat(2, 1fr) !important;
+  max-width: 1280px !important;  /* MISMO ancho que grid de 3 */
+  width: 100% !important;
+  justify-items: center !important;  /* Centra las cards */
 }
 
 /* Price card */
