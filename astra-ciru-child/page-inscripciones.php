@@ -11,6 +11,52 @@ defined( 'ABSPATH' ) || exit;
 get_header();
 ?>
 
+<style>
+/* ESTILOS INLINE - NO DEPENDEN DE CACHE */
+#congreso-page-inscripciones {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden !important;
+}
+#congreso-page-inscripciones > * {
+  width: 100% !important;
+  max-width: 100vw !important;
+}
+/* GRIDS CON ANCHO FIJO */
+.ciru-precios__panel {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+}
+.ciru-precios__grid {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+}
+.ciru-precios__grid--3 {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 2rem !important;
+}
+.ciru-precios__grid--2 {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr 1fr !important;
+  gap: 2rem !important;
+}
+.ciru-precios__grid--2 .ciru-price-card:nth-child(1) {
+  grid-column: 1 / 2 !important;
+}
+.ciru-precios__grid--2 .ciru-price-card:nth-child(2) {
+  grid-column: 2 / 3 !important;
+}
+/* HEADER IGUAL QUE HOME */
+.site-header .ast-container {
+  max-width: 1280px !important;
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
+}
+</style>
+
 </div><!-- /ast-container — cerrado para full-width -->
 </div><!-- /#content — cerrado para full-width -->
 
@@ -48,6 +94,40 @@ get_header();
 	</div>
 
 </main>
+
+<script>
+// FORZAR LAYOUT CORRECTO - EJECUTA INMEDIATAMENTE
+(function() {
+  function forceLayout() {
+    // Forzar todos los grids al mismo ancho
+    const grids = document.querySelectorAll('.ciru-precios__grid');
+    grids.forEach(grid => {
+      grid.style.maxWidth = '1280px';
+      grid.style.margin = '0 auto';
+    });
+
+    // Grid de 2 columnas usa 3 columnas para mantener ancho
+    const grid2 = document.querySelectorAll('.ciru-precios__grid--2');
+    grid2.forEach(g => {
+      g.style.gridTemplateColumns = '1fr 1fr 1fr';
+    });
+  }
+
+  // Ejecutar al cargar
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', forceLayout);
+  } else {
+    forceLayout();
+  }
+
+  // Ejecutar después de cada cambio de tab
+  document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('ciru-precios__tab')) {
+      setTimeout(forceLayout, 100);
+    }
+  });
+})();
+</script>
 
 <?php
 // Dos <div> vacíos para balancear los que footer.php cierra:

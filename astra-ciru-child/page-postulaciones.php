@@ -94,6 +94,27 @@ $modalidades = [
 get_header();
 ?>
 
+<style>
+/* ESTILOS INLINE - NO DEPENDEN DE CACHE */
+#congreso-page-postulaciones {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden !important;
+}
+#congreso-page-postulaciones > * {
+  width: 100% !important;
+  max-width: 100vw !important;
+}
+/* HEADER IGUAL QUE HOME */
+.site-header .ast-container {
+  max-width: 1280px !important;
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
+}
+</style>
+
 </div><!-- /ast-container — cerrado para full-width -->
 </div><!-- /#content — cerrado para full-width -->
 
