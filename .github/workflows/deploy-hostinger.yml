@@ -10,31 +10,30 @@ on:
 
 jobs:
   deploy:
-    name: Deploy child theme via FTP
+    name: Deploy child theme via SFTP
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Install sshpass
+        run: sudo apt-get update && sudo apt-get install -y sshpass
+
       - name: Deploy via SFTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps
-          port: 65002
-          local-dir: ./astra-ciru-child/
-          server-dir: /domains/congresoscu.org/public_html/wp-content/themes/astra-ciru-child/
-          dangerous-clean-slate: false
-          exclude: |
-            **/.git*
-            **/.DS_Store
-            **/node_modules/**
-            **/.gitignore
+        env:
+          HOST: ${{ secrets.FTP_SERVER }}
+          USER: ${{ secrets.FTP_USERNAME }}
+          PASS: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          cd astra-ciru-child
+          sshpass -p "$PASS" sftp -o StrictHostKeyChecking=no -o Port=65002 $USER@$HOST <<EOF
+          cd /domains/congresoscu.org/public_html/wp-content/themes/astra-ciru-child
+          put -r *
+          bye
+          EOF
 
       - name: Deployment summary
         run: |
           echo "✅ Child theme deployed to Hostinger"
-          echo "🌐 Site: https://ciru.cloud-ip.cc"
+          echo "🌐 Site: https://congresoscu.org"
