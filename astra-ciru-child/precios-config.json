@@ -72,6 +72,23 @@
       "href": "#contacto"
     },
     {
+      "titulo": "Profesional (Congreso)",
+      "subtitulo": "Enfermeros/as en ejercicio",
+      "precio": "1111",
+      "moneda": "UYU",
+      "periodo": "precio anticipado",
+      "precio_regular": "0000",
+      "featured": false,
+      "badge": null,
+      "features": [
+        "Acceso a todas las jornadas",
+        "Material científico digital",
+        "Coffee breaks incluidos",
+        "Certificado de asistencia"
+      ],
+      "href": "#contacto"
+    },
+    {
       "titulo": "Estudiante",
       "subtitulo": "Estudiantes de enfermería",
       "precio": "0000",
