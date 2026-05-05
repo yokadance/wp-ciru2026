@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || exit;
 
 $autoridades = [
 	[
-		'cargo'      => 'Presidente del Congreso',
+		'cargo'      => 'Presidente del Congreso X',
 		'nombre'     => 'Dr. [Nombre Apellido]',    // EDITAR
 		'org'        => '76º Congreso Uruguayo de Cirugía',
 		'card_color' => '#055db6',
