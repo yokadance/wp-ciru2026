@@ -26,6 +26,16 @@ function congreso_enqueue_assets() {
 		time()  // FUERZA cache refresh usando timestamp
 	);
 
+	// CSS específico para forzar full-width en páginas de inscripciones/postulaciones
+	if ( is_page_template( 'page-inscripciones.php' ) || is_page_template( 'page-postulaciones.php' ) ) {
+		wp_enqueue_style(
+			'congreso-force-fullwidth',
+			get_stylesheet_directory_uri() . '/assets/css/force-fullwidth.css',
+			[ 'congreso-style' ],
+			time()
+		);
+	}
+
 	wp_enqueue_script(
 		'congreso-js',
 		get_stylesheet_directory_uri() . '/assets/js/congreso.js',

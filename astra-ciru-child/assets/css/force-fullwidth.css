@@ -1,0 +1,75 @@
+/* =====================================================
+   FORCE FULL-WIDTH — Sobrescribe TODAS las limitaciones de Astra
+   ===================================================== */
+
+/* RESETEAR TODAS las limitaciones de width de Astra */
+body.page-template-page-inscripciones,
+body.page-template-page-postulaciones {
+  --ast-normal-container-width: 100vw !important;
+  --ast-narrow-container-width: 100vw !important;
+  --ast-container-width: 100vw !important;
+  --wp--custom--ast-content-width-size: 100vw !important;
+  --wp--custom--ast-wide-width-size: 100vw !important;
+}
+
+/* Forzar ancho completo en TODOS los contenedores de Astra */
+body.page-template-page-inscripciones .ast-container,
+body.page-template-page-postulaciones .ast-container,
+body.page-template-page-inscripciones .site-content,
+body.page-template-page-postulaciones .site-content,
+body.page-template-page-inscripciones #primary,
+body.page-template-page-postulaciones #primary {
+  max-width: 100vw !important;
+  width: 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* GRID DE PRECIOS: Todos usan 3 columnas SIEMPRE */
+.ciru-precios .ciru-container {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  padding: 0 2rem !important;
+}
+
+.ciru-precios__panel {
+  display: none !important;
+  width: 100% !important;
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+}
+
+.ciru-precios__panel.is-active {
+  display: block !important;
+}
+
+/* TODOS los grids: 3 columnas fijas */
+.ciru-precios__grid,
+.ciru-precios__grid--3,
+.ciru-precios__grid--2 {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 2rem !important;
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+  width: 100% !important;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .ciru-precios__grid,
+  .ciru-precios__grid--3,
+  .ciru-precios__grid--2 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .ciru-precios__grid,
+  .ciru-precios__grid--3,
+  .ciru-precios__grid--2 {
+    grid-template-columns: 1fr !important;
+  }
+}
