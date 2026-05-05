@@ -203,4 +203,4 @@ function congreso_price_card( array $plan ): void {
 /* -------------------------------------------------------
    7. PANEL DE ADMINISTRACIÓN
 ------------------------------------------------------- */
-require_once get_stylesheet_directory() . '/admin/precios-admin.php';
+require_once get_stylesheet_directory() . '/admin/precios-admin-simple.php';

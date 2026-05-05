@@ -18,7 +18,7 @@
  */
 defined( 'ABSPATH' ) || exit;
 
-// Leer configuración desde precios-config.json
+// Leer configuración desde WordPress options
 $json_file = get_stylesheet_directory() . '/precios-config.json';
 $default_features = [
 	'Acceso a todas las sesiones científicas',
@@ -27,12 +27,17 @@ $default_features = [
 	'Certificado de asistencia',
 ];
 
-// Leer JSON
-if ( file_exists( $json_file ) ) {
+// Intentar leer de WordPress options primero, si no existe, importar del JSON
+$precios_data = get_option( 'congreso_precios_data' );
+
+if ( ! $precios_data && file_exists( $json_file ) ) {
+	// Importar desde JSON solo la primera vez
 	$json_content = file_get_contents( $json_file );
 	$precios_data = json_decode( $json_content, true );
-} else {
-	// Fallback si no existe el JSON
+	update_option( 'congreso_precios_data', $precios_data );
+}
+
+if ( ! $precios_data ) {
 	$precios_data = [
 		'cirugia' => [],
 		'enfermeria' => [],
