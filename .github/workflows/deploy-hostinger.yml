@@ -17,21 +17,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install sshpass
-        run: sudo apt-get update && sudo apt-get install -y sshpass
-
-      - name: Deploy via SFTP
-        env:
-          HOST: ${{ secrets.FTP_SERVER }}
-          USER: ${{ secrets.FTP_USERNAME }}
-          PASS: ${{ secrets.FTP_PASSWORD }}
+      - name: Setup SSH key
         run: |
-          cd astra-ciru-child
-          sshpass -p "$PASS" sftp -o StrictHostKeyChecking=no -o Port=65002 $USER@$HOST <<EOF
-          cd /domains/congresoscu.org/public_html/wp-content/themes/astra-ciru-child
-          put -r *
-          bye
-          EOF
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p 65002 ${{ secrets.FTP_SERVER }} >> ~/.ssh/known_hosts
+
+      - name: Deploy via rsync over SSH
+        run: |
+          rsync -avz --delete \
+            -e "ssh -i ~/.ssh/deploy_key -p 65002 -o StrictHostKeyChecking=no" \
+            astra-ciru-child/ \
+            ${{ secrets.FTP_USERNAME }}@${{ secrets.FTP_SERVER }}:/domains/congresoscu.org/public_html/wp-content/themes/astra-ciru-child/
 
       - name: Deployment summary
         run: |
