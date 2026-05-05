@@ -23,7 +23,7 @@ function congreso_enqueue_assets() {
 		'congreso-style',
 		get_stylesheet_directory_uri() . '/assets/css/congreso.css',
 		[ 'astra-parent', 'material-symbols' ],
-		'1.3.0'  // Incrementado para forzar cache bust
+		'1.3.2'  // Fix: ancho consistente en tabs de Inscripciones
 	);
 
 	wp_enqueue_script(

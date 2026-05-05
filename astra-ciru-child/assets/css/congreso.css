@@ -61,7 +61,11 @@
    2. RESET
    ===================================================== */
 *, *::before, *::after { box-sizing: border-box; }
-html  { scroll-behavior: smooth; }
+html  {
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable;  /* Evita que el menú se corra al navegar */
+  overflow-y: scroll;        /* Siempre muestra scrollbar para mantener ancho consistente */
+}
 body  { background: var(--background); color: var(--on-surface); font-family: var(--f-body); }
 img   { max-width: 100%; display: block; }
 
@@ -588,8 +592,15 @@ body.page-template-page-postulaciones article {
 }
 .ciru-precios__tab:hover:not(.is-active) { color: var(--primary); }
 
-.ciru-precios__panel { display: none; }
-.ciru-precios__panel.is-active { display: block; animation: ciruFadeUp .32s ease; }
+.ciru-precios__panel {
+  display: none;
+  min-height: 400px;  /* Altura mínima para evitar saltos */
+}
+.ciru-precios__panel.is-active {
+  display: flex;
+  justify-content: center;  /* Centra el grid */
+  animation: ciruFadeUp .32s ease;
+}
 
 @keyframes ciruFadeUp {
   from { opacity: 0; transform: translateY(10px); }
@@ -601,12 +612,15 @@ body.page-template-page-postulaciones article {
   gap: 2rem;
   align-items: start;
   width: 100%;
+  max-width: var(--max-w);  /* Ancho máximo consistente */
+  margin: 0 auto;
 }
-.ciru-precios__grid--3 { grid-template-columns: repeat(3,1fr); }
+.ciru-precios__grid--3 {
+  grid-template-columns: repeat(3,1fr);
+}
 .ciru-precios__grid--2 {
   grid-template-columns: repeat(2,1fr);
   max-width: 52rem;
-  margin: 0 auto;
 }
 
 /* Price card */
