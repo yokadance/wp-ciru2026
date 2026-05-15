@@ -121,14 +121,21 @@
   }
 
   /* =====================================================
-     TABS DE PRECIOS
+     TABS GENÉRICOS (Precios, Trabajos Libres, Comités)
      ===================================================== */
   document.querySelectorAll('.ciru-precios__tab').forEach(function (tab) {
     tab.addEventListener('click', function () {
-      var target    = tab.dataset.tab;
-      var container = tab.closest('.ciru-precios');
+      var target = tab.dataset.tab;
+
+      // Buscar el contenedor padre (cualquier sección que use tabs)
+      var container = tab.closest('.ciru-precios')
+                   || tab.closest('.ciru-trabajos-libres')
+                   || tab.closest('.ciru-comites')
+                   || tab.closest('section');
+
       if (!container) return;
 
+      // Remover clase activa de todos los tabs y paneles en este contenedor
       container.querySelectorAll('.ciru-precios__tab').forEach(function (t) {
         t.classList.remove('is-active');
       });
@@ -136,6 +143,7 @@
         p.classList.remove('is-active');
       });
 
+      // Activar tab y panel seleccionados
       tab.classList.add('is-active');
       var panel = container.querySelector('#tab-' + target);
       if (panel) panel.classList.add('is-active');
