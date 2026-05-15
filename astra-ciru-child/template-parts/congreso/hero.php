@@ -41,7 +41,7 @@ $slides = [
 		'color_tag' => '#45d8ed',
 		'gradient'  => 'linear-gradient(105deg, rgba(0,40,28,.92) 0%, rgba(0,60,40,.72) 45%, rgba(0,40,28,.35) 100%)',
 		'foto'      => $img_base . 'hero-enfermeria.jpg', // EDITAR
-		'logo'      => $logo_base . 'logo-enfermeria.svg', // Logo Enfermería
+		'logo'      => '',  // Sin logo para Enfermería
 		'tab_label' => 'Enfermería',
 		'tab_color' => '#45d8ed',
 	],

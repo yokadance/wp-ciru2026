@@ -298,29 +298,47 @@ body.page-template-page-postulaciones article {
   object-position: center;
 }
 
-/* Logo del organizador */
+/* Logo del organizador - UX optimizado */
 .ciru-hero__logo {
   position: absolute;
-  top: 2rem;
-  right: 2rem;
+  top: 50%;
+  right: 4rem;
+  transform: translateY(-50%);
   z-index: 10;
-  width: 120px;
-  height: 120px;
-  background: rgba(255, 255, 255, 0.95);
+  width: 180px;
+  height: 180px;
+  background: rgba(255, 255, 255, 0.98);
   border-radius: 50%;
-  padding: 1rem;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  padding: 1.5rem;
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.2),
+    0 0 0 8px rgba(255, 255, 255, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all 0.4s ease;
+  animation: logoFloat 3s ease-in-out infinite;
+}
+
+.ciru-hero__logo:hover {
+  transform: translateY(-50%) scale(1.05);
+  box-shadow:
+    0 16px 50px rgba(0, 0, 0, 0.25),
+    0 0 0 12px rgba(255, 255, 255, 0.15);
 }
 
 .ciru-hero__logo img {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1));
+}
+
+@keyframes logoFloat {
+  0%, 100% { transform: translateY(-50%) translateX(0); }
+  50% { transform: translateY(-50%) translateX(-5px); }
 }
 
 /* Contenido: columna única centrada */
@@ -1724,11 +1742,17 @@ body.page-template-page-postulaciones #primary {
   .ciru-hero__event-bar { display: none; }
   .ciru-hero__dots { right: 14px; gap: 10px; }
   .ciru-hero__logo {
-    width: 80px;
-    height: 80px;
-    top: 1rem;
-    right: 1rem;
-    padding: 0.6rem;
+    width: 100px;
+    height: 100px;
+    top: 50%;
+    right: 1.5rem;
+    transform: translateY(-50%);
+    padding: 0.8rem;
+  }
+
+  @keyframes logoFloat {
+    0%, 100% { transform: translateY(-50%) translateX(0); }
+    50% { transform: translateY(-50%) translateX(-3px); }
   }
   .ciru-countdown__grid { grid-template-columns: repeat(2,1fr); }
   .ciru-bienvenida__grid { grid-template-columns: 1fr; }
