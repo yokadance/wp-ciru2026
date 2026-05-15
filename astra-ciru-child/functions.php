@@ -45,7 +45,7 @@ function congreso_enqueue_assets() {
 	);
 
 	wp_localize_script( 'congreso-js', 'congresoConfig', [
-		'targetDate' => '2026-09-15T00:00:00', // EDITAR: fecha del congreso
+		'targetDate' => '2026-12-02T00:00:00', // 2 de Diciembre 2026
 		'ajaxUrl'    => admin_url( 'admin-ajax.php' ),
 		'nonce'      => wp_create_nonce( 'congreso_contact' ),
 	] );

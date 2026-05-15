@@ -86,28 +86,166 @@ $precios_instrumentacion = $precios_data['instrumentacion'] ?? [];
 
 		<!-- Panel Cirugía -->
 		<div class="ciru-precios__panel is-active" id="tab-cirugia">
-			<div class="ciru-precios__grid ciru-precios__grid--3">
-				<?php foreach ( $precios_cirugia as $plan ) : ?>
-					<?php congreso_price_card( $plan ); ?>
-				<?php endforeach; ?>
+			<div class="ciru-precios__table-wrap">
+				<table class="ciru-precios__table">
+					<thead>
+						<tr>
+							<th>Categoría</th>
+							<th>Hasta 01-Oct-2026</th>
+							<th>Hasta 01-Dic-2026</th>
+							<th>En Sede</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><strong>Cirujanos Socios SCU</strong></td>
+							<td>USD 200</td>
+							<td>USD 250</td>
+							<td>USD 300</td>
+						</tr>
+						<tr>
+							<td><strong>Cirujanos No Socios</strong></td>
+							<td>USD 250</td>
+							<td>USD 300</td>
+							<td>USD 350</td>
+						</tr>
+						<tr class="destacado">
+							<td><strong>Residentes Socios SCU</strong></td>
+							<td>USD 100</td>
+							<td>USD 120</td>
+							<td>USD 150</td>
+						</tr>
+						<tr>
+							<td><strong>Residentes No Socios</strong></td>
+							<td>USD 120</td>
+							<td>USD 150</td>
+							<td>USD 180</td>
+						</tr>
+						<tr>
+							<td><strong>Estudiantes</strong></td>
+							<td>USD 50</td>
+							<td>USD 60</td>
+							<td>USD 80</td>
+						</tr>
+						<tr>
+							<td><strong>Extranjeros</strong></td>
+							<td>USD 300</td>
+							<td>USD 350</td>
+							<td>USD 400</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="ciru-precios__benefits">
+					<h4>Incluye:</h4>
+					<ul>
+						<li>Acceso a todas las sesiones científicas</li>
+						<li>Material del congreso (digital)</li>
+						<li>Certificado de asistencia</li>
+						<li>Coffee breaks</li>
+					</ul>
+				</div>
+				<div class="ciru-precios__cta">
+					<a href="https://sige.grupoelis.com.uy/events/76-congreso-uruguayo-de-cirugia-2-3-y-4-de-diciembre-de-2026/home"
+					   class="ciru-btn ciru-btn--accent"
+					   target="_blank"
+					   rel="noopener">
+						Inscribirse Ahora
+					</a>
+				</div>
 			</div>
 		</div>
 
 		<!-- Panel Enfermería -->
 		<div class="ciru-precios__panel" id="tab-enfermeria">
-			<div class="ciru-precios__grid ciru-precios__grid--3">
-				<?php foreach ( $precios_enfermeria as $plan ) : ?>
-					<?php congreso_price_card( $plan ); ?>
-				<?php endforeach; ?>
+			<div class="ciru-precios__table-wrap">
+				<table class="ciru-precios__table">
+					<thead>
+						<tr>
+							<th>Categoría</th>
+							<th>Hasta 01-Oct-2026</th>
+							<th>Hasta 01-Dic-2026</th>
+							<th>En Sede</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="destacado">
+							<td><strong>Enfermería Quirúrgica</strong></td>
+							<td>USD 80</td>
+							<td>USD 100</td>
+							<td>USD 120</td>
+						</tr>
+						<tr>
+							<td><strong>Estudiantes</strong></td>
+							<td>USD 50</td>
+							<td>USD 60</td>
+							<td>USD 80</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="ciru-precios__benefits">
+					<h4>Incluye:</h4>
+					<ul>
+						<li>Acceso a todas las jornadas</li>
+						<li>Material científico (digital)</li>
+						<li>Certificado de asistencia</li>
+						<li>Coffee breaks</li>
+					</ul>
+				</div>
+				<div class="ciru-precios__cta">
+					<a href="https://sige.grupoelis.com.uy/events/76-congreso-uruguayo-de-cirugia-2-3-y-4-de-diciembre-de-2026/home"
+					   class="ciru-btn ciru-btn--accent"
+					   target="_blank"
+					   rel="noopener">
+						Inscribirse Ahora
+					</a>
+				</div>
 			</div>
 		</div>
 
 		<!-- Panel Instrumentación -->
 		<div class="ciru-precios__panel" id="tab-instrumentacion">
-			<div class="ciru-precios__grid ciru-precios__grid--3">
-				<?php foreach ( $precios_instrumentacion as $plan ) : ?>
-					<?php congreso_price_card( $plan ); ?>
-				<?php endforeach; ?>
+			<div class="ciru-precios__table-wrap">
+				<table class="ciru-precios__table">
+					<thead>
+						<tr>
+							<th>Categoría</th>
+							<th>Hasta 01-Oct-2026</th>
+							<th>Hasta 01-Dic-2026</th>
+							<th>En Sede</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="destacado">
+							<td><strong>Instrumentación Quirúrgica (AUIQ)</strong></td>
+							<td>USD 80</td>
+							<td>USD 100</td>
+							<td>USD 120</td>
+						</tr>
+						<tr>
+							<td><strong>Estudiantes</strong></td>
+							<td>USD 50</td>
+							<td>USD 60</td>
+							<td>USD 80</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="ciru-precios__benefits">
+					<h4>Incluye:</h4>
+					<ul>
+						<li>Acceso a todas las jornadas</li>
+						<li>Material científico (digital)</li>
+						<li>Certificado de asistencia</li>
+						<li>Coffee breaks</li>
+					</ul>
+				</div>
+				<div class="ciru-precios__cta">
+					<a href="https://sige.grupoelis.com.uy/events/76-congreso-uruguayo-de-cirugia-2-3-y-4-de-diciembre-de-2026/home"
+					   class="ciru-btn ciru-btn--accent"
+					   target="_blank"
+					   rel="noopener">
+						Inscribirse Ahora
+					</a>
+				</div>
 			</div>
 		</div>
 

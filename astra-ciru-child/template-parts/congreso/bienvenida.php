@@ -10,7 +10,7 @@
 defined( 'ABSPATH' ) || exit;
 
 $foto_id    = null;   // EDITAR: ID de adjunto WP con la foto del presidente
-$quote_text = '«La cirugía es ciencia, humanismo y excelencia en cada acto.»'; // EDITAR
+$quote_text = '«Ciencia, Humanismo y Excelencia»';
 ?>
 
 <section class="ciru-section ciru-bienvenida" id="bienvenida">
@@ -39,23 +39,25 @@ $quote_text = '«La cirugía es ciencia, humanismo y excelencia en cada acto.»'
 			<!-- Columna derecha: texto -->
 			<div class="ciru-bienvenida__text">
 
-				<span class="ciru-eyebrow">Bienvenidos</span>
+				<span class="ciru-eyebrow">Estimados Colegas</span>
 				<h2 class="ciru-section-title">Mensaje de Bienvenida</h2>
 
-				<!-- EDITAR: texto del mensaje de bienvenida -->
-				<p>Es un honor darles la bienvenida al <strong>76º Congreso Uruguayo de Cirugía</strong>, un espacio de encuentro científico, debate académico y actualización profesional de primer nivel.</p>
+				<p>Es un honor para la Sociedad de Cirugía del Uruguay invitarlos al <strong>76º Congreso Uruguayo de Cirugía</strong>, que se realizará los días <strong>2, 3 y 4 de diciembre de 2026</strong> en The Grand Hotel, Punta del Este, Maldonado.</p>
 
-				<p>En esta edición el congreso se celebra de forma simultánea junto a las <strong>XXXV Jornadas Integradas de Enfermería Quirúrgica</strong>, las <strong>XXXI Jornadas Integradas de Instrumentación Quirúrgica</strong> y las <strong>XXXVI Jornadas de Residentes de Cirugía</strong>, reafirmando el compromiso del equipo quirúrgico como unidad.</p>
+				<p>Bajo el lema <strong>«Ciencia, Humanismo y Excelencia»</strong>, este congreso reunirá a destacados especialistas nacionales e internacionales para compartir los últimos avances en cirugía, promover el intercambio científico y fortalecer los lazos de la comunidad quirúrgica latinoamericana.</p>
 
-				<p>Bajo el lema <em>«Ciencia, Humanismo y Excelencia»</em>, los convocamos a compartir días de aprendizaje, innovación y camaradería profesional en Montevideo.</p>
+				<p>Además, contaremos con las <strong>XXXV Jornadas Integradas de Enfermería Quirúrgica</strong> y las <strong>XXXI Jornadas Integradas de Instrumentación Quirúrgica (AUIQ)</strong>, realizadas en forma simultánea, lo que enriquecerá aún más el intercambio multidisciplinario.</p>
 
-				<p>Los esperamos.</p>
+				<p>El <strong>Precongreso</strong> se llevará a cabo el <strong>1º de diciembre en el Hospital de Clínicas</strong>, con actividades académicas de gran valor formativo.</p>
+
+				<p>Punta del Este nos ofrece un marco incomparable para este encuentro científico, combinando excelencia académica con la calidez de nuestro país.</p>
+
+				<p><strong>¡Los esperamos!</strong></p>
 
 				<div class="ciru-bienvenida__firma">
-					<!-- EDITAR: nombre y cargo reales -->
-					Dr. [Nombre Apellido]
-					<span>Presidente del Congreso</span>
-					<span>76º Congreso Uruguayo de Cirugía 2026</span>
+					Dr. Roberto Valiñas
+					<span>Presidente</span>
+					<span>Sociedad de Cirugía del Uruguay</span>
 				</div>
 
 			</div>

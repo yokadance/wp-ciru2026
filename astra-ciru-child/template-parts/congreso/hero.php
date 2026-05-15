@@ -17,14 +17,14 @@ $slides = [
 		'tag'       => 'Evento Principal',
 		'titulo'    => '76º Congreso<br>Uruguayo de Cirugía',
 		'subtitulo' => 'Ciencia, Humanismo y Excelencia',
-		'fecha'     => 'Fecha por confirmar · 2026',      // EDITAR
-		'lugar'     => 'Montevideo, Uruguay',               // EDITAR
-		'btn1'      => [ 'texto' => 'Inscribirse',   'href' => '#inscripciones' ],
+		'fecha'     => '2, 3 y 4 de Diciembre · 2026',
+		'lugar'     => 'The Grand Hotel, Punta del Este',
+		'btn1'      => [ 'texto' => 'Inscribirse',   'href' => 'https://sige.grupoelis.com.uy/events/76-congreso-uruguayo-de-cirugia-2-3-y-4-de-diciembre-de-2026/home' ],
 		'btn2'      => [ 'texto' => 'Ver Programa',  'href' => '#programa' ],
 		'color_tag' => '#45d8ed',
 		// Overlay oscuro sobre la foto: izquierda más cubierta para legibilidad del texto
 		'gradient'  => 'linear-gradient(105deg, rgba(0,53,58,.92) 0%, rgba(0,53,58,.72) 45%, rgba(0,53,58,.35) 100%)',
-		'foto'      => $img_base . 'hero-cirugia.jpg',    // EDITAR: guardar imagen aquí
+		'foto'      => $img_base . 'hero-cirugia.jpg',
 		'logo'      => $logo_base . 'logo-scu.png',       // Logo SCU
 		'tab_label' => 'Cirugía',
 		'tab_color' => '#45d8ed',
@@ -34,13 +34,13 @@ $slides = [
 		'tag'       => 'Evento Simultáneo',
 		'titulo'    => 'XXXV Jornadas Integradas<br>de Enfermería Quirúrgica',
 		'subtitulo' => 'Ciencia, Humanismo y Excelencia',
-		'fecha'     => 'Fecha por confirmar · 2026',      // EDITAR
-		'lugar'     => 'Montevideo, Uruguay',               // EDITAR
-		'btn1'      => [ 'texto' => 'Inscribirse',   'href' => '#inscripciones' ],
+		'fecha'     => '2, 3 y 4 de Diciembre · 2026',
+		'lugar'     => 'The Grand Hotel, Punta del Este',
+		'btn1'      => [ 'texto' => 'Inscribirse',   'href' => 'https://sige.grupoelis.com.uy/events/76-congreso-uruguayo-de-cirugia-2-3-y-4-de-diciembre-de-2026/home' ],
 		'btn2'      => [ 'texto' => 'Ver Programa',  'href' => '#programa-enfermeria' ],
 		'color_tag' => '#45d8ed',
 		'gradient'  => 'linear-gradient(105deg, rgba(0,40,28,.92) 0%, rgba(0,60,40,.72) 45%, rgba(0,40,28,.35) 100%)',
-		'foto'      => $img_base . 'hero-enfermeria.jpg', // EDITAR
+		'foto'      => $img_base . 'hero-enfermeria.jpg',
 		'logo'      => '',  // Sin logo para Enfermería
 		'tab_label' => 'Enfermería',
 		'tab_color' => '#45d8ed',
@@ -50,13 +50,13 @@ $slides = [
 		'tag'       => 'Evento Simultáneo',
 		'titulo'    => 'XXXI Jornadas Integradas de<br>Instrumentación Quirúrgica',
 		'subtitulo' => 'Ciencia, Humanismo y Excelencia',
-		'fecha'     => 'Fecha por confirmar · 2026',      // EDITAR
-		'lugar'     => 'Montevideo, Uruguay',               // EDITAR
-		'btn1'      => [ 'texto' => 'Inscribirse',   'href' => '#inscripciones' ],
+		'fecha'     => '2, 3 y 4 de Diciembre · 2026',
+		'lugar'     => 'The Grand Hotel, Punta del Este',
+		'btn1'      => [ 'texto' => 'Inscribirse',   'href' => 'https://sige.grupoelis.com.uy/events/76-congreso-uruguayo-de-cirugia-2-3-y-4-de-diciembre-de-2026/home' ],
 		'btn2'      => [ 'texto' => 'Ver Programa',  'href' => '#programa-instrumentacion' ],
 		'color_tag' => '#45d8ed',
 		'gradient'  => 'linear-gradient(105deg, rgba(43,18,0,.92) 0%, rgba(100,48,0,.72) 45%, rgba(43,18,0,.35) 100%)',
-		'foto'      => $img_base . 'hero-instrumentacion.jpg', // EDITAR
+		'foto'      => $img_base . 'hero-instrumentacion.jpg',
 		'logo'      => $logo_base . 'logo-auiq.png',       // Logo AUIQ
 		'tab_label' => 'Instrumentación',
 		'tab_color' => '#45d8ed',
