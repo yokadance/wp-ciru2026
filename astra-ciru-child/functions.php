@@ -204,3 +204,44 @@ function congreso_price_card( array $plan ): void {
    7. PANEL DE ADMINISTRACIÓN
 ------------------------------------------------------- */
 require_once get_stylesheet_directory() . '/admin/precios-admin-simple.php';
+require_once get_stylesheet_directory() . '/admin/timeline-admin.php';
+require_once get_stylesheet_directory() . '/admin/video-admin.php';
+require_once get_stylesheet_directory() . '/admin/hoteleria-admin.php';
+require_once get_stylesheet_directory() . '/admin/trabajos-libres-admin.php';
+
+/* -------------------------------------------------------
+   6b. HELPER: render miembro card (comités)
+   Uso: congreso_miembro_card( $miembro )
+------------------------------------------------------- */
+function congreso_miembro_card( array $miembro ): string {
+	$nombre = $miembro['nombre'] ?? '';
+	$apellido = $miembro['apellido'] ?? '';
+	$cargo = $miembro['cargo'] ?? '';
+	$foto_url = $miembro['foto'] ?? '';
+
+	// Si no hay foto, usar placeholder
+	if ( empty( $foto_url ) ) {
+		$foto_url = get_stylesheet_directory_uri() . '/assets/images/placeholder-avatar.png';
+	}
+
+	ob_start();
+	?>
+	<div class="ciru-miembro-card">
+		<div class="ciru-miembro-card__foto">
+			<img src="<?php echo esc_url( $foto_url ); ?>"
+			     alt="<?php echo esc_attr( $nombre . ' ' . $apellido ); ?>"
+			     loading="lazy">
+		</div>
+		<div class="ciru-miembro-card__info">
+			<h4 class="ciru-miembro-card__nombre">
+				<?php echo esc_html( $nombre . ' ' . $apellido ); ?>
+			</h4>
+			<?php if ( ! empty( $cargo ) ) : ?>
+				<p class="ciru-miembro-card__cargo"><?php echo esc_html( $cargo ); ?></p>
+			<?php endif; ?>
+		</div>
+	</div>
+	<?php
+	return ob_get_clean();
+}
+require_once get_stylesheet_directory() . '/admin/comites-admin.php';
