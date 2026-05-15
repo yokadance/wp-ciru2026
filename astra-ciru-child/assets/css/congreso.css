@@ -298,6 +298,31 @@ body.page-template-page-postulaciones article {
   object-position: center;
 }
 
+/* Logo del organizador */
+.ciru-hero__logo {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  z-index: 10;
+  width: 120px;
+  height: 120px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+  padding: 1rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.ciru-hero__logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 /* Contenido: columna única centrada */
 .ciru-hero__content {
   position: relative;
@@ -1347,9 +1372,36 @@ body.page-template-page-postulaciones #primary {
 }
 
 .ciru-hotel-card.is-featured {
-  background: var(--primary-container);
-  border-color: var(--primary);
-  box-shadow: 0 8px 24px rgba(69, 216, 237, 0.15);
+  background: var(--primary);
+  border-color: var(--accent);
+  box-shadow: 0 8px 24px rgba(69, 216, 237, 0.25);
+}
+
+/* Textos blancos para tarjetas destacadas */
+.ciru-hotel-card.is-featured .ciru-hotel-card__nombre,
+.ciru-hotel-card.is-featured .ciru-hotel-card__descripcion,
+.ciru-hotel-card.is-featured .ciru-hotel-card__info,
+.ciru-hotel-card.is-featured .ciru-hotel-card__amenities strong,
+.ciru-hotel-card.is-featured .ciru-hotel-card__amenities li {
+  color: white;
+}
+
+.ciru-hotel-card.is-featured .ciru-hotel-card__precio {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+}
+
+.ciru-hotel-card.is-featured .ciru-hotel-card__info .material-symbols-outlined,
+.ciru-hotel-card.is-featured .ciru-hotel-card__amenities .material-symbols-outlined {
+  color: var(--accent);
+}
+
+.ciru-hotel-card.is-featured .ciru-hotel-card__header {
+  border-bottom-color: rgba(255, 255, 255, 0.2);
+}
+
+.ciru-hotel-card.is-featured .ciru-hotel-card__footer {
+  border-top-color: rgba(255, 255, 255, 0.2);
 }
 
 .ciru-hotel-card__badge {
@@ -1671,6 +1723,13 @@ body.page-template-page-postulaciones #primary {
   :root { --sec-py: 4rem; --px: 1.25rem; }
   .ciru-hero__event-bar { display: none; }
   .ciru-hero__dots { right: 14px; gap: 10px; }
+  .ciru-hero__logo {
+    width: 80px;
+    height: 80px;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.6rem;
+  }
   .ciru-countdown__grid { grid-template-columns: repeat(2,1fr); }
   .ciru-bienvenida__grid { grid-template-columns: 1fr; }
   .ciru-bienvenida__quote { display: none; }
