@@ -25,7 +25,7 @@ $slides = [
 		// Overlay oscuro sobre la foto: izquierda más cubierta para legibilidad del texto
 		'gradient'  => 'linear-gradient(105deg, rgba(0,53,58,.92) 0%, rgba(0,53,58,.72) 45%, rgba(0,53,58,.35) 100%)',
 		'foto'      => $img_base . 'hero-cirugia.jpg',    // EDITAR: guardar imagen aquí
-		'logo'      => $logo_base . 'logo-scu.svg',       // Logo SCU
+		'logo'      => $logo_base . 'logo-scu.png',       // Logo SCU
 		'tab_label' => 'Cirugía',
 		'tab_color' => '#45d8ed',
 	],
@@ -57,7 +57,7 @@ $slides = [
 		'color_tag' => '#45d8ed',
 		'gradient'  => 'linear-gradient(105deg, rgba(43,18,0,.92) 0%, rgba(100,48,0,.72) 45%, rgba(43,18,0,.35) 100%)',
 		'foto'      => $img_base . 'hero-instrumentacion.jpg', // EDITAR
-		'logo'      => $logo_base . 'logo-auiq.svg',       // Logo AUIQ
+		'logo'      => $logo_base . 'logo-auiq.png',       // Logo AUIQ
 		'tab_label' => 'Instrumentación',
 		'tab_color' => '#45d8ed',
 	],
