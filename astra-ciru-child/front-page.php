@@ -5,6 +5,9 @@
  * Estructura modular: cada sección es un archivo independiente
  * en template-parts/congreso/ — edite allí el contenido.
  *
+ * GESTIÓN DE SECCIONES: wp-admin → Apariencia → Secciones del Home
+ * Desde allí se activan/desactivan y reordenan las secciones.
+ *
  * NOTA TÉCNICA: header.php abre <div id="content"><div class="ast-container">
  * Los cerramos inmediatamente para lograr layout full-width real.
  * Los dos <div hidden> del final balancean las etiquetas de footer.php.
@@ -20,29 +23,40 @@ get_header();
 <main id="congreso-main" role="main">
 
 	<?php
-	// ── 1. HERO SLIDER ──────────────────────────────────
-	get_template_part( 'template-parts/congreso/hero' );
+	// Mapa de secciones: ID => archivo template
+	$secciones_map = [
+		'hero'              => 'hero',
+		'countdown'         => 'countdown',
+		'bienvenida'        => 'bienvenida',
+		'timeline'          => 'timeline',
+		'video-destacado'   => 'video-destacado',
+		'precios'           => 'precios',
+		'trabajos-libres'   => 'trabajos-libres',
+		'comites'           => 'comites',
+		'hoteleria'         => 'hoteleria',
+		'autoridades'       => 'autoridades',
+		'ubicacion'         => 'ubicacion',
+		'contacto'          => 'contacto',
+	];
 
-	// ── 2. AUTORIDADES ──────────────────────────────────
-	get_template_part( 'template-parts/congreso/autoridades' );
+	// Obtener orden configurado de secciones
+	$orden = congreso_get_secciones_orden();
 
-	// ── 3. BIENVENIDA ───────────────────────────────────
-	get_template_part( 'template-parts/congreso/bienvenida' );
+	// Renderizar secciones en el orden configurado
+	foreach ( $orden as $seccion_id ) {
+		// Verificar si la sección existe y está activa
+		if ( ! isset( $secciones_map[ $seccion_id ] ) ) {
+			continue;
+		}
 
-	// ── 4. CUENTA REGRESIVA ─────────────────────────────
-	get_template_part( 'template-parts/congreso/countdown' );
+		if ( ! congreso_seccion_activa( $seccion_id ) ) {
+			continue;
+		}
 
-	// ── 5. PRECIOS / INSCRIPCIONES ──────────────────────
-	get_template_part( 'template-parts/congreso/precios' );
-
-	// ── 6. POSTULACIONES ────────────────────────────────
-	get_template_part( 'template-parts/congreso/postulaciones' );
-
-	// ── 7. UBICACIÓN / MAPA ─────────────────────────────
-	get_template_part( 'template-parts/congreso/ubicacion' );
-
-	// ── 8. FORMULARIO DE CONTACTO ───────────────────────
-	get_template_part( 'template-parts/congreso/contacto' );
+		// Renderizar la sección
+		$template = $secciones_map[ $seccion_id ];
+		get_template_part( 'template-parts/congreso/' . $template );
+	}
 	?>
 
 </main>

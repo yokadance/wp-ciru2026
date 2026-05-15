@@ -245,3 +245,37 @@ function congreso_miembro_card( array $miembro ): string {
 	return ob_get_clean();
 }
 require_once get_stylesheet_directory() . '/admin/comites-admin.php';
+require_once get_stylesheet_directory() . '/admin/secciones-admin.php';
+
+/* -------------------------------------------------------
+   8. HELPER: verificar si sección está activa
+------------------------------------------------------- */
+function congreso_seccion_activa( string $seccion_id ): bool {
+	$secciones_activas = get_option( 'congreso_secciones_activas', [] );
+	
+	// Hero siempre está activo
+	if ( $seccion_id === 'hero' ) {
+		return true;
+	}
+	
+	return in_array( $seccion_id, $secciones_activas );
+}
+
+function congreso_get_secciones_orden(): array {
+	$orden_default = [
+		'hero',
+		'countdown',
+		'bienvenida',
+		'timeline',
+		'video-destacado',
+		'precios',
+		'trabajos-libres',
+		'comites',
+		'hoteleria',
+		'autoridades',
+		'ubicacion',
+		'contacto'
+	];
+	
+	return get_option( 'congreso_secciones_orden', $orden_default );
+}
