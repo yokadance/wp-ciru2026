@@ -1134,14 +1134,14 @@ body.page-template-page-postulaciones #primary {
   min-width: min-content;
 }
 
-/* Línea horizontal conectora */
+/* Línea horizontal conectora - detrás de los círculos */
 .ciru-timeline__track::before {
   content: '';
   position: absolute;
-  top: 24px;
+  top: 28px;
   left: 0;
   right: 0;
-  height: 2px;
+  height: 4px;
   background: linear-gradient(
     90deg,
     var(--primary-container) 0%,
@@ -1149,6 +1149,7 @@ body.page-template-page-postulaciones #primary {
     var(--primary-container) 100%
   );
   z-index: 0;
+  border-radius: 2px;
 }
 
 .ciru-timeline__item {
@@ -1156,50 +1157,103 @@ body.page-template-page-postulaciones #primary {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 280px;
-  max-width: 320px;
+  min-width: 300px;
+  max-width: 300px;
+  width: 300px;
   z-index: 1;
 }
 
+/* Círculos RELLENOS con color */
 .ciru-timeline__dot {
-  width: 48px;
-  height: 48px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
-  background: var(--surface-bright);
-  border: 4px solid var(--primary);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  border: none;
   margin-bottom: 1.5rem;
   position: relative;
   z-index: 2;
   transition: all 0.3s ease;
   flex-shrink: 0;
+  box-shadow:
+    0 4px 12px rgba(0, 53, 58, 0.3),
+    0 0 0 6px rgba(255, 255, 255, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ciru-timeline__dot::after {
+  content: '';
+  width: 16px;
+  height: 16px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.9;
+}
+
+.ciru-timeline__item:hover .ciru-timeline__dot {
+  transform: scale(1.1);
+  box-shadow:
+    0 6px 16px rgba(0, 53, 58, 0.4),
+    0 0 0 8px rgba(255, 255, 255, 1);
 }
 
 .ciru-timeline__item.is-featured .ciru-timeline__dot {
-  width: 56px;
-  height: 56px;
-  background: var(--primary);
-  box-shadow: 0 0 0 8px rgba(69, 216, 237, 0.15);
-  border-color: var(--accent);
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--tertiary-fixed-dim) 100%);
+  box-shadow:
+    0 6px 20px rgba(69, 216, 237, 0.5),
+    0 0 0 8px rgba(255, 255, 255, 1),
+    0 0 0 12px rgba(69, 216, 237, 0.2);
 }
 
+.ciru-timeline__item.is-featured .ciru-timeline__dot::after {
+  width: 20px;
+  height: 20px;
+}
+
+/* Tarjetas con más color */
 .ciru-timeline__card {
-  background: var(--surface);
-  border-radius: var(--r-xl);
-  padding: 1.5rem;
+  background: white;
+  border-radius: var(--r-2xl);
+  padding: 1.75rem;
   text-align: center;
-  border: 1px solid var(--outline-variant);
+  border: 2px solid var(--outline-variant);
   transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .ciru-timeline__item:hover .ciru-timeline__card {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
   border-color: var(--primary);
+  background: linear-gradient(135deg, #ffffff 0%, rgba(69, 216, 237, 0.03) 100%);
 }
 
 .ciru-timeline__item.is-featured .ciru-timeline__card {
-  background: var(--primary-container);
-  border-color: var(--primary);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  border-color: var(--accent);
+  color: white;
+  box-shadow: 0 8px 24px rgba(69, 216, 237, 0.3);
+}
+
+.ciru-timeline__item.is-featured .ciru-timeline__date {
+  color: var(--accent) !important;
+  font-weight: 700;
+}
+
+.ciru-timeline__item.is-featured .ciru-timeline__title {
+  color: white !important;
+}
+
+.ciru-timeline__item.is-featured .ciru-timeline__description {
+  color: rgba(255, 255, 255, 0.9) !important;
 }
 
 .ciru-timeline__date {
