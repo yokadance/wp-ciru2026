@@ -1,9 +1,21 @@
 # Logos
 
-Coloca aquí los logos de los organizadores:
+## Archivos actuales (PLACEHOLDERS):
 
-- **logo-scu.png** - Logo de la Sociedad de Cirugía del Uruguay (para sección de Cirugía)
-- **logo-auiq.png** - Logo AUIQ para Instrumentación Quirúrgica
-- **logo-enfermeria.png** - Logo para Jornadas de Enfermería
+- **logo-scu.svg** - Placeholder para Sociedad de Cirugía del Uruguay
+- **logo-auiq.svg** - Placeholder para AUIQ (Instrumentación Quirúrgica)
+- **logo-enfermeria.svg** - Placeholder para Jornadas de Enfermería
 
-Formatos recomendados: PNG con fondo transparente, 300-500px de ancho
+## Para reemplazar con logos reales:
+
+1. Reemplazá los archivos SVG con tus logos en formato PNG o SVG
+2. Mantené los mismos nombres de archivo
+3. Formatos recomendados: PNG con fondo transparente, 300-500px de ancho
+4. Los logos se cargan automáticamente según la sección
+
+## Uso:
+
+Los logos se mostrarán dinámicamente en el header según la sección:
+- Cirugía → logo-scu
+- Instrumentación → logo-auiq  
+- Enfermería → logo-enfermeria

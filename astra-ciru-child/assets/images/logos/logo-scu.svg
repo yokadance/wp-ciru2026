@@ -1,0 +1,5 @@
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="100" cy="100" r="95" fill="#0D47A1" stroke="#45D8ED" stroke-width="3"/>
+  <text x="100" y="115" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="white" text-anchor="middle">SCU</text>
+  <text x="100" y="145" font-family="Arial, sans-serif" font-size="12" fill="#45D8ED" text-anchor="middle">Sociedad de Cirugía</text>
+</svg>
