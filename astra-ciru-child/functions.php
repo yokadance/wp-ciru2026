@@ -99,6 +99,21 @@ add_filter( 'astra_breadcrumbs_enabled', function ( $enabled ) {
 	return $enabled;
 } );
 
+// Remover footer de Astra (Powered by WordPress, etc.)
+add_action( 'wp', function () {
+	// Remover footer bar de Astra
+	remove_action( 'astra_footer', 'astra_footer_markup' );
+
+	// Remover el copyright/credits de Astra
+	add_filter( 'astra_footer_sml_layout', '__return_false' );
+
+	// Desactivar widgets del footer de Astra
+	add_filter( 'astra_footer_widget_row_1_col_1_enable', '__return_false' );
+	add_filter( 'astra_footer_widget_row_1_col_2_enable', '__return_false' );
+	add_filter( 'astra_footer_widget_row_1_col_3_enable', '__return_false' );
+	add_filter( 'astra_footer_widget_row_1_col_4_enable', '__return_false' );
+}, 20 );
+
 /* -------------------------------------------------------
    3. BODY CLASSES
 ------------------------------------------------------- */
