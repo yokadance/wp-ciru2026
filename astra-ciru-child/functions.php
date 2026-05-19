@@ -291,6 +291,33 @@ function congreso_get_secciones_orden(): array {
 		'ubicacion',
 		'contacto'
 	];
-	
+
 	return get_option( 'congreso_secciones_orden', $orden_default );
 }
+
+/* -------------------------------------------------------
+   8. SHORTCODES
+------------------------------------------------------- */
+add_shortcode( 'autoridades_congreso', function() {
+    $ruta = get_stylesheet_directory() . '/template-parts/congreso/autoridades.php';
+
+    if ( ! file_exists( $ruta ) ) {
+        return '<p style="color:red;">❌ Archivo no encontrado: ' . esc_html( $ruta ) . '</p>';
+    }
+
+    ob_start();
+    include $ruta;
+    return ob_get_clean();
+} );
+
+add_shortcode( 'comite_organizador', function() {
+    $ruta = get_stylesheet_directory() . '/template-parts/congreso/comites.php';
+
+    if ( ! file_exists( $ruta ) ) {
+        return '<p style="color:red;">❌ Archivo no encontrado: ' . esc_html( $ruta ) . '</p>';
+    }
+
+    ob_start();
+    include $ruta;
+    return ob_get_clean();
+} );

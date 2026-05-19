@@ -36,13 +36,7 @@ get_header();
 	<div class="ciru-container">
 		<article id="post-<?php the_ID(); ?>" <?php post_class( 'ciru-page-contenido__article' ); ?>>
 			<div class="ciru-page-contenido__content">
-				<?php
-				// Asegurar que los shortcodes se procesen
-				$content = get_the_content();
-				$content = apply_filters( 'the_content', $content );
-				$content = str_replace( ']]>', ']]&gt;', $content );
-				echo $content;
-				?>
+				<?php the_content(); ?>
 			</div>
 		</article>
 	</div>
