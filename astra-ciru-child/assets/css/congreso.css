@@ -2135,9 +2135,12 @@ body.page-template-page-postulaciones #primary {
   position: relative;
   background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
   color: white;
-  padding: 5rem 0 4rem;
+  padding: 4rem 0 3.5rem;
   text-align: center;
   overflow: hidden;
+  min-height: 280px;
+  display: flex;
+  align-items: center;
 }
 
 .ciru-page-hero__bg {
@@ -2146,7 +2149,25 @@ body.page-template-page-postulaciones #primary {
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at top right, rgba(69, 216, 237, 0.15), transparent 60%);
+  background: radial-gradient(circle at top right, rgba(69, 216, 237, 0.2), transparent 50%),
+              radial-gradient(circle at bottom left, rgba(69, 216, 237, 0.1), transparent 50%);
+  pointer-events: none;
+}
+
+.ciru-page-hero__pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.03;
+  background-image:
+    linear-gradient(30deg, rgba(255,255,255,.1) 12%, transparent 12.5%, transparent 87%, rgba(255,255,255,.1) 87.5%, rgba(255,255,255,.1)),
+    linear-gradient(150deg, rgba(255,255,255,.1) 12%, transparent 12.5%, transparent 87%, rgba(255,255,255,.1) 87.5%, rgba(255,255,255,.1)),
+    linear-gradient(30deg, rgba(255,255,255,.1) 12%, transparent 12.5%, transparent 87%, rgba(255,255,255,.1) 87.5%, rgba(255,255,255,.1)),
+    linear-gradient(150deg, rgba(255,255,255,.1) 12%, transparent 12.5%, transparent 87%, rgba(255,255,255,.1) 87.5%, rgba(255,255,255,.1));
+  background-size: 80px 140px;
+  background-position: 0 0, 0 0, 40px 70px, 40px 70px;
   pointer-events: none;
 }
 
@@ -2154,22 +2175,38 @@ body.page-template-page-postulaciones #primary {
   max-width: 900px;
   margin: 0 auto;
   position: relative;
-  z-index: 1;
+  z-index: 2;
+}
+
+.ciru-page-hero__badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  padding: 0.5rem 1.5rem;
+  border-radius: 50px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.95);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .ciru-page-hero__title {
-  font: 800 3rem/1.2 var(--f-heading);
+  font: 800 3.5rem/1.15 var(--f-heading);
   color: white;
-  margin: 0 0 1rem;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 0 0 1.25rem;
+  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  letter-spacing: -0.02em;
 }
 
 .ciru-page-hero__excerpt {
-  font: 500 1.25rem/1.5 var(--f-body);
+  font: 500 1.25rem/1.6 var(--f-body);
   color: rgba(255, 255, 255, 0.95);
-  margin: 0;
-  max-width: 700px;
   margin: 0 auto;
+  max-width: 700px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .ciru-page-contenido {
@@ -2290,11 +2327,18 @@ body.page-template-page-postulaciones #primary {
 
 @media (max-width: 768px) {
   .ciru-page-hero {
-    padding: 3rem 1.5rem 2.5rem;
+    padding: 4rem 1.5rem 3rem;
+    min-height: 300px;
+  }
+
+  .ciru-page-hero__badge {
+    font-size: 0.75rem;
+    padding: 0.4rem 1rem;
+    margin-bottom: 1rem;
   }
 
   .ciru-page-hero__title {
-    font-size: 2rem;
+    font-size: 2.25rem;
   }
 
   .ciru-page-hero__excerpt {

@@ -19,8 +19,10 @@ get_header();
 <!-- Hero Banner -->
 <section class="ciru-page-hero">
 	<div class="ciru-page-hero__bg"></div>
+	<div class="ciru-page-hero__pattern"></div>
 	<div class="ciru-container">
 		<div class="ciru-page-hero__content">
+			<div class="ciru-page-hero__badge">76º Congreso Uruguayo de Cirugía</div>
 			<h1 class="ciru-page-hero__title"><?php the_title(); ?></h1>
 			<?php if ( has_excerpt() ) : ?>
 				<p class="ciru-page-hero__excerpt"><?php echo get_the_excerpt(); ?></p>
@@ -34,7 +36,13 @@ get_header();
 	<div class="ciru-container">
 		<article id="post-<?php the_ID(); ?>" <?php post_class( 'ciru-page-contenido__article' ); ?>>
 			<div class="ciru-page-contenido__content">
-				<?php the_content(); ?>
+				<?php
+				// Asegurar que los shortcodes se procesen
+				$content = get_the_content();
+				$content = apply_filters( 'the_content', $content );
+				$content = str_replace( ']]>', ']]&gt;', $content );
+				echo $content;
+				?>
 			</div>
 		</article>
 	</div>
