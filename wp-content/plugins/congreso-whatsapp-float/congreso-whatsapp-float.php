@@ -23,6 +23,8 @@ class Congreso_WhatsApp_Float {
 	}
 
 	public function render_button() {
+		$type = get_option( 'cwf_type', 'channel' );
+		$channel_url = get_option( 'cwf_channel_url', 'https://whatsapp.com/channel/0029Vb7tfcYBadmbhl81Em16' );
 		$phone = get_option( 'cwf_phone', '+59899123456' );
 		$message = get_option( 'cwf_message', 'Hola, necesito información sobre el 76º Congreso de Cirugía' );
 		$enabled = get_option( 'cwf_enabled', '1' );
@@ -31,11 +33,14 @@ class Congreso_WhatsApp_Float {
 			return;
 		}
 
-		// Limpiar y formatear número (quitar espacios, guiones, paréntesis)
-		$phone_clean = preg_replace( '/[^0-9+]/', '', $phone );
-
-		// URL de WhatsApp con mensaje pre-llenado
-		$whatsapp_url = 'https://wa.me/' . $phone_clean . '?text=' . urlencode( $message );
+		// Determinar URL según tipo
+		if ( $type === 'channel' ) {
+			$whatsapp_url = $channel_url;
+		} else {
+			// Limpiar y formatear número (quitar espacios, guiones, paréntesis)
+			$phone_clean = preg_replace( '/[^0-9+]/', '', $phone );
+			$whatsapp_url = 'https://wa.me/' . $phone_clean . '?text=' . urlencode( $message );
+		}
 		?>
 		<a href="<?php echo esc_url( $whatsapp_url ); ?>"
 		   class="cwf-whatsapp-float"
@@ -158,12 +163,16 @@ class Congreso_WhatsApp_Float {
 	}
 
 	public function register_settings() {
+		register_setting( 'cwf_settings', 'cwf_enabled' );
+		register_setting( 'cwf_settings', 'cwf_type' );
+		register_setting( 'cwf_settings', 'cwf_channel_url' );
 		register_setting( 'cwf_settings', 'cwf_phone' );
 		register_setting( 'cwf_settings', 'cwf_message' );
-		register_setting( 'cwf_settings', 'cwf_enabled' );
 	}
 
 	public function render_settings_page() {
+		$type = get_option( 'cwf_type', 'channel' );
+		$channel_url = get_option( 'cwf_channel_url', 'https://whatsapp.com/channel/0029Vb7tfcYBadmbhl81Em16' );
 		$phone = get_option( 'cwf_phone', '+59899123456' );
 		$message = get_option( 'cwf_message', 'Hola, necesito información sobre el 76º Congreso de Cirugía' );
 		$enabled = get_option( 'cwf_enabled', '1' );
@@ -193,6 +202,48 @@ class Congreso_WhatsApp_Float {
 
 					<tr>
 						<th scope="row">
+							<label>Tipo de WhatsApp</label>
+						</th>
+						<td>
+							<fieldset>
+								<label style="display: block; margin-bottom: 8px;">
+									<input type="radio"
+									       name="cwf_type"
+									       value="channel"
+									       <?php checked( $type, 'channel' ); ?>>
+									<strong>Canal de WhatsApp</strong> (Para unirse a un canal)
+								</label>
+								<label style="display: block;">
+									<input type="radio"
+									       name="cwf_type"
+									       value="chat"
+									       <?php checked( $type, 'chat' ); ?>>
+									<strong>Chat Directo</strong> (Enviar mensaje a un número)
+								</label>
+							</fieldset>
+						</td>
+					</tr>
+
+					<tr id="channel-url-row" style="<?php echo $type !== 'channel' ? 'display:none;' : ''; ?>">
+						<th scope="row">
+							<label for="cwf_channel_url">URL del Canal</label>
+						</th>
+						<td>
+							<input type="url"
+							       id="cwf_channel_url"
+							       name="cwf_channel_url"
+							       value="<?php echo esc_attr( $channel_url ); ?>"
+							       class="large-text"
+							       placeholder="https://whatsapp.com/channel/...">
+							<p class="description">
+								URL completa del canal de WhatsApp<br>
+								Ejemplo: <code>https://whatsapp.com/channel/0029Vb7tfcYBadmbhl81Em16</code>
+							</p>
+						</td>
+					</tr>
+
+					<tr id="phone-row" style="<?php echo $type !== 'chat' ? 'display:none;' : ''; ?>">
+						<th scope="row">
 							<label for="cwf_phone">Número de WhatsApp</label>
 						</th>
 						<td>
@@ -209,7 +260,7 @@ class Congreso_WhatsApp_Float {
 						</td>
 					</tr>
 
-					<tr>
+					<tr id="message-row" style="<?php echo $type !== 'chat' ? 'display:none;' : ''; ?>">
 						<th scope="row">
 							<label for="cwf_message">Mensaje Predeterminado</label>
 						</th>
@@ -225,6 +276,17 @@ class Congreso_WhatsApp_Float {
 						</td>
 					</tr>
 				</table>
+
+				<script>
+				document.querySelectorAll('input[name="cwf_type"]').forEach(function(radio) {
+					radio.addEventListener('change', function() {
+						var isChannel = this.value === 'channel';
+						document.getElementById('channel-url-row').style.display = isChannel ? '' : 'none';
+						document.getElementById('phone-row').style.display = isChannel ? 'none' : '';
+						document.getElementById('message-row').style.display = isChannel ? 'none' : '';
+					});
+				});
+				</script>
 
 				<?php submit_button( 'Guardar Configuración' ); ?>
 			</form>
@@ -257,12 +319,21 @@ class Congreso_WhatsApp_Float {
 
 			<h2>📱 URL Generada</h2>
 			<?php
-			$phone_clean = preg_replace( '/[^0-9+]/', '', $phone );
-			$url = 'https://wa.me/' . $phone_clean . '?text=' . urlencode( $message );
+			if ( $type === 'channel' ) {
+				$url = $channel_url;
+			} else {
+				$phone_clean = preg_replace( '/[^0-9+]/', '', $phone );
+				$url = 'https://wa.me/' . $phone_clean . '?text=' . urlencode( $message );
+			}
 			?>
 			<p style="background: white; padding: 1rem; border: 1px solid #ddd; border-radius: 4px; word-break: break-all;">
 				<code><?php echo esc_html( $url ); ?></code>
 			</p>
+			<?php if ( $type === 'channel' ) : ?>
+			<p style="color: #25D366; margin-top: 0.5rem;">
+				<strong>✓</strong> Canal configurado - Los usuarios podrán unirse al canal del congreso
+			</p>
+			<?php endif; ?>
 		</div>
 		<?php
 	}
