@@ -2130,6 +2130,48 @@ body.page-template-page-postulaciones #primary {
    22. PÁGINA DE CONTENIDO (Page Template)
    ===================================================== */
 
+/* Hero Banner de Páginas */
+.ciru-page-hero {
+  position: relative;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  color: white;
+  padding: 5rem 0 4rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+.ciru-page-hero__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at top right, rgba(69, 216, 237, 0.15), transparent 60%);
+  pointer-events: none;
+}
+
+.ciru-page-hero__content {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.ciru-page-hero__title {
+  font: 800 3rem/1.2 var(--f-heading);
+  color: white;
+  margin: 0 0 1rem;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ciru-page-hero__excerpt {
+  font: 500 1.25rem/1.5 var(--f-body);
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
 .ciru-page-contenido {
   background: var(--surface);
   padding: 4rem 0;
@@ -2138,29 +2180,13 @@ body.page-template-page-postulaciones #primary {
 
 .ciru-page-contenido__article {
   max-width: 900px;
-  margin: 0 auto;
+  margin: -2rem auto 0;
   background: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
   padding: 3rem;
-}
-
-.ciru-page-contenido__header {
-  margin-bottom: 2.5rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 2px solid var(--accent);
-}
-
-.ciru-page-contenido__title {
-  font: 700 2.5rem/1.2 var(--f-heading);
-  color: var(--primary);
-  margin: 0 0 1rem;
-}
-
-.ciru-page-contenido__excerpt {
-  font: 400 1.125rem/1.6 var(--f-body);
-  color: var(--on-surface-variant);
-  margin-top: 1rem;
+  position: relative;
+  z-index: 2;
 }
 
 .ciru-page-contenido__content {
@@ -2263,17 +2289,26 @@ body.page-template-page-postulaciones #primary {
 }
 
 @media (max-width: 768px) {
+  .ciru-page-hero {
+    padding: 3rem 1.5rem 2.5rem;
+  }
+
+  .ciru-page-hero__title {
+    font-size: 2rem;
+  }
+
+  .ciru-page-hero__excerpt {
+    font-size: 1.05rem;
+  }
+
   .ciru-page-contenido {
     padding: 2rem 0;
   }
 
   .ciru-page-contenido__article {
     padding: 2rem 1.5rem;
-    border-radius: 0;
-  }
-
-  .ciru-page-contenido__title {
-    font-size: 2rem;
+    border-radius: 12px;
+    margin: -1rem 1rem 0;
   }
 
   .ciru-page-contenido__content h2 {

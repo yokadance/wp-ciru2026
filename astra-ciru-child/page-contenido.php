@@ -4,7 +4,7 @@
  * Template Post Type: page
  *
  * Plantilla para páginas de contenido estático: reglamentos, cartas, etc.
- * Layout full-width con tipografía optimizada para lectura.
+ * Layout full-width con hero banner superior y footer del congreso.
  */
 defined( 'ABSPATH' ) || exit;
 
@@ -14,32 +14,33 @@ get_header();
 </div><!-- /ast-container — cerrado para full-width -->
 </div><!-- /#content — cerrado para full-width -->
 
+<?php while ( have_posts() ) : the_post(); ?>
+
+<!-- Hero Banner -->
+<section class="ciru-page-hero">
+	<div class="ciru-page-hero__bg"></div>
+	<div class="ciru-container">
+		<div class="ciru-page-hero__content">
+			<h1 class="ciru-page-hero__title"><?php the_title(); ?></h1>
+			<?php if ( has_excerpt() ) : ?>
+				<p class="ciru-page-hero__excerpt"><?php echo get_the_excerpt(); ?></p>
+			<?php endif; ?>
+		</div>
+	</div>
+</section>
+
+<!-- Contenido -->
 <main class="ciru-page-contenido">
 	<div class="ciru-container">
-
-		<?php while ( have_posts() ) : the_post(); ?>
-
 		<article id="post-<?php the_ID(); ?>" <?php post_class( 'ciru-page-contenido__article' ); ?>>
-
-			<header class="ciru-page-contenido__header">
-				<h1 class="ciru-page-contenido__title"><?php the_title(); ?></h1>
-				<?php if ( has_excerpt() ) : ?>
-					<div class="ciru-page-contenido__excerpt">
-						<?php the_excerpt(); ?>
-					</div>
-				<?php endif; ?>
-			</header>
-
 			<div class="ciru-page-contenido__content">
 				<?php the_content(); ?>
 			</div>
-
 		</article>
-
-		<?php endwhile; ?>
-
 	</div>
 </main>
+
+<?php endwhile; ?>
 
 <?php
 // Footer del congreso
