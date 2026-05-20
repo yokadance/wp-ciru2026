@@ -83,15 +83,5 @@ defined( 'ABSPATH' ) || exit;
 
 		</div>
 
-		<!-- Barra inferior -->
-		<div class="ciru-footer__bottom">
-			<p class="ciru-footer__copyright">
-				&copy; <?php echo date('Y'); ?> Sociedad de Cirugía del Uruguay. Todos los derechos reservados.
-			</p>
-			<p class="ciru-footer__credits">
-				Desarrollado con <span style="color: var(--accent);">♥</span> para el 76º Congreso Uruguayo de Cirugía
-			</p>
-		</div>
-
 	</div>
 </footer>
