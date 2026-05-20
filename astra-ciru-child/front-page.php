@@ -62,6 +62,11 @@ get_header();
 </main>
 
 <?php
+// Footer del congreso
+get_template_part( 'template-parts/congreso/footer-congreso' );
+?>
+
+<?php
 // Dos <div> vacíos para balancear los que footer.php cierra:
 //   </div><!-- ast-container -->
 //   </div><!-- #content -->

@@ -104,6 +104,9 @@ add_action( 'wp', function () {
 	// Remover footer bar de Astra
 	remove_action( 'astra_footer', 'astra_footer_markup' );
 
+	// Remover copyright bar
+	add_filter( 'astra_footer_bar_display', '__return_false' );
+
 	// Remover el copyright/credits de Astra
 	add_filter( 'astra_footer_sml_layout', '__return_false' );
 
@@ -113,6 +116,11 @@ add_action( 'wp', function () {
 	add_filter( 'astra_footer_widget_row_1_col_3_enable', '__return_false' );
 	add_filter( 'astra_footer_widget_row_1_col_4_enable', '__return_false' );
 }, 20 );
+
+// Ocultar footer de Astra con CSS como backup
+add_action( 'wp_head', function () {
+	echo '<style>.site-footer{display:none!important;}</style>';
+} );
 
 /* -------------------------------------------------------
    3. BODY CLASSES
