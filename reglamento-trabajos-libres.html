@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reglamento de Trabajos Libres - 76º Congreso Uruguayo de Cirugía</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00353A;
+            --secondary: #055DB6;
+            --accent: #45d8ed;
+            --tertiary: #BFC8C9;
+            --surface: #F8FAFA;
+            --on-surface: #191C1D;
+            --on-surface-variant: #3F4849;
+            --outline: #6F797A;
+            --accent-container: rgba(69, 216, 237, 0.12);
+            --primary-container: rgba(0, 53, 58, 0.08);
+            --success: #2E7D32;
+            --success-light: rgba(1, 26, 3, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #F8FAFA 0%, #EDF2F3 100%);
+            color: var(--on-surface);
+            line-height: 1.6;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 4rem 2rem 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at top right, rgba(69, 216, 237, 0.2), transparent 50%);
+            pointer-events: none;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .header h1 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 2.75rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .header-subtitle {
+            font-size: 1.125rem;
+            opacity: 0.95;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: -2rem auto 4rem;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 3rem;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.02);
+            margin-bottom: 2rem;
+        }
+
+        .alert {
+            background: linear-gradient(135deg, var(--accent) 0%, rgba(69, 216, 237, 0.8) 100%);
+            color: var(--primary);
+            border-radius: 12px;
+            padding: 2rem 2.5rem;
+            margin-bottom: 2.5rem;
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 8px 24px rgba(69, 216, 237, 0.25);
+        }
+
+        .alert h3 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 1.25rem;
+            margin: 0 0 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .alert h3::before {
+            content: '📅';
+            font-size: 1.5rem;
+        }
+
+        .alert ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .alert li {
+            padding: 0.75rem 0;
+            font-weight: 500;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            line-height: 1.6;
+        }
+
+        .alert li::before {
+            content: '✓';
+            background: var(--primary);
+            color: white;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        h2 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        h2::before {
+            content: '';
+            width: 6px;
+            height: 2rem;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--secondary) 100%);
+            border-radius: 3px;
+        }
+
+        h3 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin: 2.5rem 0 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        h3::before {
+            content: attr(data-number);
+            background: var(--accent-container);
+            color: var(--secondary);
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        h4 {
+            font-family: 'Manrope', sans-serif;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin: 1.5rem 0 1rem;
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+            color: var(--on-surface);
+            font-size: 1rem;
+        }
+
+        ul,
+        ol {
+            margin: 1.25rem 0 1.5rem 1.5rem;
+        }
+
+        li {
+            margin: 0.75rem 0;
+            padding-left: 0.5rem;
+        }
+
+        ul li {
+            position: relative;
+        }
+
+        ul li::marker {
+            color: var(--accent);
+        }
+
+        ol li::marker {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        strong {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.25rem;
+            margin: 2rem 0;
+        }
+
+        .category-card {
+            background: var(--surface);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .category-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(69, 216, 237, 0.2);
+        }
+
+        .category-card h4 {
+            margin-top: 0;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .category-card h4::before {
+            content: '◆';
+            color: var(--accent);
+            font-size: 1.25rem;
+        }
+
+        .category-card p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: var(--on-surface-variant);
+        }
+
+        .premio-list {
+            background: var(--success-light);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .premio-list ul {
+            margin: 1rem 0 0;
+        }
+
+        .premio-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 0;
+        }
+
+        .premio-list li::before {
+            content: '🏆';
+            font-size: 1.25rem;
+        }
+
+        .premio-list li::marker {
+            content: '';
+        }
+
+        .highlight-box {
+            background: var(--primary-container);
+            border-left: 4px solid var(--primary);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .highlight-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .modalidad {
+            background: white;
+            border: 2px solid var(--accent-container);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .modalidad h4 {
+            color: var(--secondary);
+            margin-top: 0;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .footer p {
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0.5rem 0;
+        }
+
+        .footer strong {
+            color: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 3rem 1.5rem 2rem;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .card {
+                padding: 2rem 1.5rem;
+                border-radius: 12px;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .alert {
+                padding: 1.5rem;
+            }
+
+            .alert h3 {
+                font-size: 1.125rem;
+            }
+
+            .alert li {
+                font-size: 0.95rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            h3 {
+                font-size: 1.25rem;
+            }
+
+            .category-grid,
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media print {
+            .header {
+                background: var(--primary);
+                padding: 2rem;
+            }
+
+            .container {
+                margin-top: 0;
+            }
+
+            .card {
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-content">
+            <span class="header-badge">76º Congreso Uruguayo de Cirugía 2026</span>
+            <h1>Reglamento de Trabajos Libres</h1>
+            <p class="header-subtitle">Ciencia, Humanismo y Excelencia</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="card">
+
+            <div class="alert">
+                <h3>Fechas Importantes</h3>
+                <ul>
+                    <li><strong>Apertura de inscripciones:</strong> 1º de Febrero de 2026</li>
+                    <li><strong>Fecha límite de envío:</strong> 1º de Agosto de 2026</li>
+                    <li><strong>Notificación de aceptación:</strong> 1º de Septiembre de 2026</li>
+                </ul>
+            </div>
+
+            <h3 data-number="I">Presentación de Trabajos</h3>
+            <p>Los trabajos libres deberán enviarse exclusivamente a través de la plataforma oficial del congreso en
+                formato digital.</p>
+
+            <h4>Requisitos generales:</h4>
+            <ul>
+                <li>El trabajo debe ser <strong>original e inédito</strong></li>
+                <li>Extensión máxima: <strong>2500 palabras</strong> (sin incluir referencias)</li>
+                <li>Formato: <strong>PDF</strong></li>
+                <li>Idioma: <strong>Español o Portugués</strong></li>
+                <li>Referencias: formato <strong>Vancouver</strong>, máximo 30 referencias</li>
+            </ul>
+
+            <h4>Estructura del trabajo:</h4>
+            <ol>
+                <li><strong>Título:</strong> Máximo 150 caracteres</li>
+                <li><strong>Autores:</strong> Nombre completo, institución, ciudad, país</li>
+                <li><strong>Resumen:</strong> Máximo 250 palabras</li>
+                <li><strong>Palabras clave:</strong> 3 a 5 palabras</li>
+                <li><strong>Introducción</strong></li>
+                <li><strong>Objetivos</strong></li>
+                <li><strong>Material y métodos</strong></li>
+                <li><strong>Resultados</strong></li>
+                <li><strong>Discusión</strong></li>
+                <li><strong>Conclusiones</strong></li>
+                <li><strong>Referencias bibliográficas</strong></li>
+            </ol>
+
+            <h3 data-number="II">Categorías de Presentación</h3>
+
+            <div class="category-grid">
+                <div class="category-card">
+                    <h4>Investigación Clínica</h4>
+                    <p>Estudios prospectivos o retrospectivos con análisis estadístico apropiado.</p>
+                </div>
+
+                <div class="category-card">
+                    <h4>Casos Clínicos</h4>
+                    <p>Presentación de casos de especial interés por su rareza, evolución o forma de presentación.</p>
+                </div>
+
+                <div class="category-card">
+                    <h4>Revisiones Bibliográficas</h4>
+                    <p>Revisiones sistemáticas o narrativas sobre temas de actualidad.</p>
+                </div>
+
+                <div class="category-card">
+                    <h4>Videos Quirúrgicos</h4>
+                    <p>Duración máxima: 5 minutos. Formato: MP4 (1080p). Incluir narración en español o portugués.</p>
+                </div>
+            </div>
+
+            <h3 data-number="III">Evaluación y Selección</h3>
+            <p>Los trabajos serán evaluados por el Comité Científico del Congreso siguiendo criterios de:</p>
+            <ul>
+                <li>Originalidad y relevancia científica</li>
+                <li>Metodología apropiada</li>
+                <li>Claridad en la presentación</li>
+                <li>Calidad de las conclusiones</li>
+                <li>Relevancia para la práctica quirúrgica</li>
+            </ul>
+
+            <div class="highlight-box">
+                <p><strong>Notificación:</strong> Los autores recibirán notificación de aceptación, rechazo o necesidad
+                    de modificaciones antes del <strong>1º de Septiembre de 2026</strong>.</p>
+            </div>
+
+            <h3 data-number="IV">Modalidades de Presentación</h3>
+
+            <div class="two-column">
+                <div class="modalidad">
+                    <h4>Presentación Oral</h4>
+                    <p><strong>Duración:</strong> 8 minutos de presentación + 4 minutos de discusión</p>
+                    <p><strong>Soporte:</strong> PowerPoint o PDF</p>
+                </div>
+
+                <div class="modalidad">
+                    <h4>Póster Digital</h4>
+                    <p><strong>Formato:</strong> Vertical, 90cm ancho × 120cm alto</p>
+                    <p><strong>Resolución:</strong> Mínima 150 DPI</p>
+                    <p><strong>Archivo:</strong> PDF o JPG</p>
+                </div>
+            </div>
+
+            <h3 data-number="V">Premios</h3>
+
+            <div class="premio-list">
+                <p><strong>Se otorgarán los siguientes premios:</strong></p>
+                <ul>
+                    <li>Mejor Trabajo de Investigación Clínica</li>
+                    <li>Mejor Caso Clínico</li>
+                    <li>Mejor Video Quirúrgico</li>
+                    <li>Mejor Presentación Oral</li>
+                    <li>Mejor Póster</li>
+                </ul>
+            </div>
+
+            <p>Los premios serán entregados durante la ceremonia de clausura del Congreso.</p>
+
+            <h3 data-number="VI">Requisitos de Inscripción</h3>
+
+            <div class="alert">
+                <h3>Importante</h3>
+                <ul>
+                    <li>Almenos un autor del trabajo debe estar inscrito en el Congreso para que el trabajo sea incluido
+                        en el programa científico</li>
+                    <li>La inscripción al congreso puede realizarse hasta el 30 de Noviembre de 2026</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p><strong>76º Congreso Uruguayo de Cirugía</strong></p>
+            <p>2, 3 y 4 de Diciembre de 2026 · The Grand Hotel, Punta del Este</p>
+            <p style="margin-top: 1.5rem; opacity: 0.8;">Sociedad de Cirugía del Uruguay</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
